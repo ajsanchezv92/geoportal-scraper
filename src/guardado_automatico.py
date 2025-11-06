@@ -74,45 +74,63 @@ class SistemaGuardado:
     
     async def _guardar_checkpoint_datos(self, timestamp):
         """Guarda checkpoint de datos de scraping"""
-        checkpoint_data = {
-            'timestamp': timestamp,
-            'fecha_iso': datetime.now().isoformat(),
-            'tipo': 'checkpoint_automatico',
-            'datos': self._obtener_estado_actual()
-        }
-        
-        checkpoint_file = f'data/checkpoints/auto_checkpoint_{timestamp}.json'
-        with open(checkpoint_file, 'w', encoding='utf-8') as f:
-            json.dump(checkpoint_data, f, indent=2, ensure_ascii=False)
-        
-        self.logger.info(f"📁 Checkpoint guardado: {checkpoint_file}")
+        try:
+            # Buscar el checkpoint más reciente del scraper
+            checkpoint_files = list(Path('data/checkpoints').glob('checkpoint_*.json'))
+            if checkpoint_files:
+                latest_checkpoint = max(checkpoint_files, key=lambda x: x.stat().st_mtime)
+                # Crear una copia de seguridad del checkpoint
+                backup_checkpoint = f'data/backups/checkpoint_backup_{timestamp}.json'
+                shutil.copy2(latest_checkpoint, backup_checkpoint)
+                
+            checkpoint_data = {
+                'timestamp': timestamp,
+                'fecha_iso': datetime.now().isoformat(),
+                'tipo': 'checkpoint_automatico',
+                'datos': self._obtener_estado_actual()
+            }
+            
+            checkpoint_file = f'data/checkpoints/auto_checkpoint_{timestamp}.json'
+            with open(checkpoint_file, 'w', encoding='utf-8') as f:
+                json.dump(checkpoint_data, f, indent=2, ensure_ascii=False)
+            
+            self.logger.info(f"📁 Checkpoint guardado: {checkpoint_file}")
+            
+        except Exception as e:
+            self.logger.error(f"Error guardando checkpoint: {str(e)}")
     
     async def _crear_backup_completo(self, timestamp):
         """Crea un backup completo del sistema"""
-        backup_dir = f'data/backups/backup_{timestamp}'
-        Path(backup_dir).mkdir(parents=True, exist_ok=True)
-        
-        # Copiar archivos críticos
-        archivos_criticos = [
-            'data/resultados/centros_2_repeticiones.json',
-            'data/checkpoints/',
-            'config/config.json'
-        ]
-        
-        for archivo in archivos_criticos:
-            try:
-                if os.path.isdir(archivo):
-                    shutil.copytree(archivo, f'{backup_dir}/{Path(archivo).name}')
-                else:
-                    shutil.copy2(archivo, backup_dir)
-            except Exception as e:
-                self.logger.warning(f"No se pudo copiar {archivo}: {str(e)}")
-        
-        # Comprimir backup
-        shutil.make_archive(backup_dir, 'zip', backup_dir)
-        shutil.rmtree(backup_dir)  # Eliminar directorio sin comprimir
-        
-        self.logger.info(f"📦 Backup creado: {backup_dir}.zip")
+        try:
+            backup_dir = f'data/backups/backup_{timestamp}'
+            Path(backup_dir).mkdir(parents=True, exist_ok=True)
+            
+            # Copiar archivos críticos
+            archivos_criticos = [
+                'data/resultados',
+                'data/checkpoints',
+                'config/config.json'
+            ]
+            
+            for archivo in archivos_criticos:
+                source_path = Path(archivo)
+                if source_path.exists():
+                    if source_path.is_dir():
+                        dest_path = Path(backup_dir) / source_path.name
+                        if dest_path.exists():
+                            shutil.rmtree(dest_path)
+                        shutil.copytree(source_path, dest_path)
+                    else:
+                        shutil.copy2(source_path, Path(backup_dir) / source_path.name)
+            
+            # Comprimir backup
+            shutil.make_archive(backup_dir, 'zip', backup_dir)
+            shutil.rmtree(backup_dir)  # Eliminar directorio sin comprimir
+            
+            self.logger.info(f"📦 Backup creado: {backup_dir}.zip")
+            
+        except Exception as e:
+            self.logger.error(f"Error creando backup: {str(e)}")
     
     async def _verificar_integridad(self):
         """Verifica la integridad de los datos guardados"""
@@ -121,7 +139,10 @@ class SistemaGuardado:
             resultados_files = list(Path('data/resultados').glob('*.json'))
             for file in resultados_files:
                 with open(file, 'r', encoding='utf-8') as f:
-                    json.load(f)  # Verificar que es JSON válido
+                    data = json.load(f)  # Verificar que es JSON válido
+                    # Verificar estructura básica
+                    if 'estaciones' not in data:
+                        self.logger.warning(f"Estructura inválida en {file.name}")
             
             self.logger.info("✅ Integridad de datos verificada")
             
@@ -130,13 +151,17 @@ class SistemaGuardado:
     
     async def _limpiar_backups_antiguos(self):
         """Limpia backups antiguos manteniendo solo los más recientes"""
-        backup_files = sorted(Path('data/backups').glob('backup_*.zip'))
-        
-        if len(backup_files) > self.max_backups:
-            # Eliminar los más antiguos
-            for old_backup in backup_files[:-self.max_backups]:
-                old_backup.unlink()
-                self.logger.info(f"🗑️  Backup antiguo eliminado: {old_backup.name}")
+        try:
+            backup_files = sorted(Path('data/backups').glob('backup_*.zip'))
+            
+            if len(backup_files) > self.max_backups:
+                # Eliminar los más antiguos
+                for old_backup in backup_files[:-self.max_backups]:
+                    old_backup.unlink()
+                    self.logger.info(f"🗑️  Backup antiguo eliminado: {old_backup.name}")
+                    
+        except Exception as e:
+            self.logger.error(f"Error limpiando backups: {str(e)}")
     
     async def _limpieza_automatica(self):
         """Limpieza automática de archivos temporales antiguos"""
@@ -163,7 +188,8 @@ class SistemaGuardado:
             'estado': 'activo',
             'ultima_verificacion': datetime.now().isoformat(),
             'archivos_resultados': len(list(Path('data/resultados').glob('*.json'))),
-            'tamaño_datos_mb': self._calcular_tamaño_datos()
+            'tamaño_datos_mb': self._calcular_tamaño_datos(),
+            'checkpoints_existentes': len(list(Path('data/checkpoints').glob('*.json')))
         }
     
     def _calcular_tamaño_datos(self):
