@@ -1,0 +1,29 @@
+{
+  "scraper": {
+    "max_workers": 8,
+    "batch_size": 25,
+    "timeout": 25,
+    "checkpoint_interval": 3,
+    "max_retries": 3,
+    "retry_delay": 2,
+    "request_delay": 0.1,
+    "random_delay": true,
+    "connection_pool_size": 12,
+    "progress_update_interval": 50,
+    "memory_check_interval": 25
+  },
+  "guardado": {
+    "intervalo_minutos": 10,
+    "max_backups": 5,
+    "limpieza_dias": 7,
+    "tamaño_maximo_mb": 25
+  },
+  "sesiones": {
+    "duracion_horas": 2,
+    "verificacion_minutos": 5
+  },
+  "urls": {
+    "geoportal_base": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=",
+    "timeout_conexion": 30
+  }
+}
