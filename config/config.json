@@ -13,22 +13,11 @@
     "memory_check_interval": 25
   },
   "guardado": {
-    "intervalo_minutos": 10,
-    "max_backups": 5,
-    "limpieza_dias": 7,
     "tamaño_maximo_mb": 25
   },
   "sesiones": {
     "duracion_horas": 2,
-    "verificacion_minutos": 5
-  },
-  "urls": {
-    "geoportal_base": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=",
-    "timeout_conexion": 30
-  },
-  "logging": {
-    "level": "INFO",
-    "max_file_size_mb": 10,
-    "backup_count": 5
+    "tiempo_entre_sesiones_seg": 30,
+    "max_sesiones": null
   }
 }
