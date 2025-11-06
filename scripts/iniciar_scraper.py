@@ -46,7 +46,7 @@ async def main():
     console.print("[bold cyan]🚀 Iniciando GeoportalScraper...[/bold cyan]")
     await scraper._configure_session()
 
-    urls_path = Path("geoportal_links/geoportal_links_1.txt")
+    urls_path = Path("geoportal_links/geoportal_links.txt")
     if not urls_path.exists():
         console.print(f"[red]❌ No se encontró {urls_path}[/red]")
         return
