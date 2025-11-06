@@ -9,8 +9,13 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from dataclasses import dataclass
 import logging
-import psutil
+import re
+from datetime import datetime
+from bs4 import BeautifulSoup
+import urllib3
 
+# Deshabilitar warnings de SSL
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 @dataclass
 class ScraperConfig:
@@ -38,7 +43,10 @@ class GeoportalScraper:
             'urls_fallidas': 0,
             'inicio_tiempo': time.time(),
             'emplazamientos_validos': 0,
-            'urls_procesadas_list': []
+            'urls_procesadas_list': [],
+            'con_coordenadas': 0,
+            'sin_coordenadas': 0,
+            'altitudes_obtenidas': 0
         }
         self.setup_logging()
         self.setup_directories()
@@ -62,7 +70,8 @@ class GeoportalScraper:
     async def _configure_session(self):
         connector = aiohttp.TCPConnector(
             limit=self.config.connection_pool_size,
-            limit_per_host=self.config.connection_pool_size
+            limit_per_host=self.config.connection_pool_size,
+            verify_ssl=False
         )
         timeout = aiohttp.ClientTimeout(total=self.config.timeout)
         
@@ -70,7 +79,7 @@ class GeoportalScraper:
             connector=connector,
             timeout=timeout,
             headers={
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 'Accept-Language': 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3',
                 'Accept-Encoding': 'gzip, deflate',
@@ -93,9 +102,14 @@ class GeoportalScraper:
             async with self.session.get(url) as response:
                 if response.status == 200:
                     html = await response.text()
-                    datos = self.extraer_datos_estacion(html, url)
-                    self.stats['urls_exitosas'] += 1
-                    return datos
+                    datos = await self.extraer_datos_estacion_completo(html, url)
+                    if datos and self.tiene_datos_validos(datos):
+                        self.stats['urls_exitosas'] += 1
+                        self.stats['emplazamientos_validos'] += 1
+                        return datos
+                    else:
+                        self.stats['urls_fallidas'] += 1
+                        return None
                 else:
                     self.logger.warning(f"HTTP {response.status} para {url}")
                     self.stats['urls_fallidas'] += 1
@@ -105,215 +119,334 @@ class GeoportalScraper:
             self.stats['urls_fallidas'] += 1
             return None
     
-    def extraer_datos_estacion(self, html: str, url: str) -> Dict:
-        """Extrae datos de la estación basado en el ejemplo JSON proporcionado"""
-        estacion_id = self._extraer_estacion_id(url)
+    def tiene_datos_validos(self, datos):
+        """Verifica que los datos extraídos sean realmente válidos"""
+        return bool(datos.get('titular') or datos.get('caracteristicas_tecnicas'))
+    
+    async def extraer_datos_estacion_completo(self, html: str, url: str) -> Dict:
+        """Extrae datos COMPLETOS usando el método probado de tu código"""
+        soup = BeautifulSoup(html, 'html.parser')
+        codigo = self.extraer_codigo_desde_url(url)
+        
+        if not self.es_pagina_valida(soup):
+            return None
         
         datos = {
-            "estacion_id": estacion_id,
-            "url_oficial": url,
-            "metadata": self._generar_metadata(),
-            "informacion_geografica": self._extraer_info_geografica(html, estacion_id),
-            "caracteristicas_estacion": self._extraer_caracteristicas(html),
-            "infraestructura_tecnologica": self._extraer_infraestructura(html),
-            "mediciones_emisiones": self._extraer_mediciones(html),
-            "evaluacion_riesgo_salud": self._evaluar_riesgos(html),
-            "analisis_cobertura": self._analizar_cobertura(html),
-            "impacto_territorial": self._analizar_impacto(html),
-            "estado_actualizacion": self._obtener_estado_actualizacion(html),
-            "scraping_metadata": self._generar_metadata_scraping(url)
+            "codigo_emplazamiento": codigo,
+            "url": url,
+            "titular": "",
+            "direccion_completa": "",
+            "municipio": "",
+            "provincia": "",
+            "caracteristicas_tecnicas": [],
+            "niveles_medidos": [],
+            "cumplimiento_normativa": ""
         }
         
-        self.stats['emplazamientos_validos'] += 1
+        try:
+            # Extraer LOCALIZACIÓN (método probado)
+            h2_localizacion = soup.find('h2', string='LOCALIZACIÓN')
+            if h2_localizacion:
+                tabla_localizacion = h2_localizacion.find_next('table')
+                if tabla_localizacion:
+                    filas = tabla_localizacion.find_all('tr')
+                    for fila in filas:
+                        celdas = fila.find_all('td')
+                        if len(celdas) >= 2:
+                            texto_celda1 = celdas[0].get_text(strip=True)
+                            texto_celda2 = celdas[1].get_text(strip=True)
+                            
+                            if ' - ' in texto_celda1:
+                                partes = texto_celda1.split(' - ')
+                                datos['titular'] = partes[0].strip()
+                            
+                            datos['direccion_completa'] = texto_celda2
+                            
+                            # Extraer municipio y provincia
+                            if '. ' in texto_celda2:
+                                partes_dir = texto_celda2.split('. ')
+                                if len(partes_dir) >= 2:
+                                    datos['municipio'] = partes_dir[1].split(',')[0].strip() if ',' in partes_dir[1] else partes_dir[1].strip()
+                                    if ',' in texto_celda2:
+                                        datos['provincia'] = texto_celda2.split(', ')[-1].strip()
+            
+            # Extraer CARACTERÍSTICAS TÉCNICAS
+            h2_caracteristicas = soup.find('h2', string=re.compile('CARACTERISTICAS TÉCNICAS', re.IGNORECASE))
+            if h2_caracteristicas:
+                tabla = h2_caracteristicas.find_next('table')
+                if tabla:
+                    filas = tabla.find_all('tr')[1:]  # Saltar encabezado
+                    for fila in filas:
+                        celdas = fila.find_all('td')
+                        if len(celdas) >= 3:
+                            caracteristica = {
+                                "operador": celdas[0].get_text(strip=True),
+                                "referencia": celdas[1].get_text(strip=True),
+                                "banda_asignada_mhz": celdas[2].get_text(strip=True)
+                            }
+                            datos['caracteristicas_tecnicas'].append(caracteristica)
+            
+            # Extraer NIVELES MEDIDOS
+            h2_niveles = soup.find('h2', string=re.compile('NIVELES MEDIDOS', re.IGNORECASE))
+            if h2_niveles:
+                tabla = h2_niveles.find_next('table')
+                if tabla:
+                    filas = tabla.find_all('tr')[1:]  # Saltar encabezado
+                    for i, fila in enumerate(filas):
+                        celdas = fila.find_all('td')
+                        if len(celdas) >= 3:
+                            nivel = {
+                                "punto_medida": i + 1,
+                                "distancia_metros": celdas[0].get_text(strip=True),
+                                "acimut_grados": celdas[1].get_text(strip=True),
+                                "valor_medido_uw_cm2": celdas[2].get_text(strip=True)
+                            }
+                            datos['niveles_medidos'].append(nivel)
+            
+            # Extraer CUMPLIMIENTO
+            texto_completo = soup.get_text()
+            if 'cumplen la normativa legal vigente' in texto_completo.lower():
+                datos['cumplimiento_normativa'] = 'CUMPLE'
+            else:
+                datos['cumplimiento_normativa'] = 'NO_ESPECIFICADO'
+            
+            # ✅ AÑADIR CAMPOS CALCULADOS MEJORADOS
+            datos = self.calcular_campos_realistas(datos)
+            
+            # ✅ AÑADIR METADATOS DE SCRAPING
+            datos['scraping_metadata'] = {
+                'fecha_extraccion': datetime.now().isoformat(),
+                'status_code': 200,
+                'response_time_ms': 0,  # Podríamos medir esto
+                'version_scraper': '3.0.0_sentinel'
+            }
+            
+            self.logger.info(f"✅ {codigo} - {len(datos['caracteristicas_tecnicas'])} antenas - {datos['cumplimiento_normativa']}")
+            
+        except Exception as e:
+            self.logger.error(f"Error extrayendo datos de {codigo}: {e}")
+            return None
+        
         return datos
     
-    def _extraer_estacion_id(self, url: str) -> str:
-        """Extrae el ID de estación de la URL"""
+    def es_pagina_valida(self, soup):
+        """Determina si la página contiene datos válidos de estación"""
+        titulo = soup.find('h1', string='ESTACIONES DE TELEFONÍA MÓVIL')
+        return titulo is not None
+    
+    def extraer_codigo_desde_url(self, url):
+        """Extrae el código de emplazamiento desde la URL"""
         try:
-            return url.split('emplazamiento=')[1]
+            match = re.search(r'emplazamiento=(\d+)', url)
+            if match:
+                return match.group(1)
         except:
-            return "desconocido"
+            pass
+        return "DESCONOCIDO"
     
-    def _generar_metadata(self) -> Dict:
-        return {
-            "fecha_extraccion": time.strftime('%Y-%m-%dT%H:%M:%S'),
-            "fecha_procesamiento": time.strftime('%Y-%m-%dT%H:%M:%S'),
-            "version_esquema": "3.0.0",
-            "fuente_verificada": True,
-            "hash_verificacion": f"hash_{int(time.time())}"
-        }
+    # ✅ MÉTODOS MEJORADOS DE TU CÓDIGO
+    def determinar_tecnologia_mejorada(self, banda_mhz, referencia=""):
+        """Clasificación más precisa de tecnologías"""
+        try:
+            numeros = re.findall(r'\d+\.?\d*', banda_mhz)
+            if len(numeros) >= 2:
+                freq_min = float(numeros[0])
+                freq_max = float(numeros[1])
+                freq_media = (freq_min + freq_max) / 2
+                
+                # Banda 700 MHz (4G/5G)
+                if 694 <= freq_media <= 790:
+                    return "4G/5G"
+                # Banda 800 MHz (4G)
+                elif 791 <= freq_media <= 862:
+                    return "4G"
+                # Banda 900 MHz (2G/3G)
+                elif 880 <= freq_media <= 960:
+                    return "2G/3G"
+                # Banda 1800 MHz (4G)
+                elif 1710 <= freq_media <= 1880:
+                    return "4G"
+                # Banda 2100 MHz (3G/4G)
+                elif 1920 <= freq_media <= 2170:
+                    return "3G/4G"
+                # Banda 2600 MHz (4G)
+                elif 2500 <= freq_media <= 2690:
+                    return "4G"
+                # Banda 3500 MHz (5G)
+                elif 3400 <= freq_media <= 3800:
+                    return "5G"
+                
+            # Por referencia si la frecuencia no es concluyente
+            referencia_upper = referencia.upper()
+            if "5G" in referencia_upper:
+                return "5G"
+            elif "4G" in referencia_upper or "LTE" in referencia_upper:
+                return "4G"
+            elif "3G" in referencia_upper or "UMTS" in referencia_upper:
+                return "3G"
+            elif "2G" in referencia_upper or "GSM" in referencia_upper:
+                return "2G"
+                
+        except:
+            pass
+        return "Desconocida"
     
-    def _extraer_info_geografica(self, html: str, estacion_id: str) -> Dict:
-        """Simula extracción de información geográfica"""
-        # En una implementación real, aquí se parsearía el HTML
-        return {
-            "direccion": {
-                "via": f"DIRECCIÓN PARA {estacion_id}",
-                "municipio": f"MUNICIPIO_{estacion_id}",
-                "provincia": "PROVINCIA_EJEMPLO",
-                "codigo_municipio": estacion_id,
-                "codigo_provincia": estacion_id[:2] if len(estacion_id) >= 2 else "00"
-            },
-            "coordenadas": {
-                "latitud": 40.31138889 + random.uniform(-0.1, 0.1),
-                "longitud": -0.28055556 + random.uniform(-0.1, 0.1),
-                "altitud_metros": 536.0,
-                "sistema_referencia": "ETRS89",
-                "precision_ubicacion": "ALTA",
-                "geo_hash": f"hash_{estacion_id}"
-            },
-            "contexto_geografico": {
-                "tipo_zona": "RURAL",
-                "densidad_poblacion": "BAJA",
-                "clasificacion_entorno": "ZONA_NO_URBANA",
-                "ine_codigo": estacion_id
+    def estimar_cobertura_relativa(self, frecuencia):
+        """Estimación basada en frecuencia"""
+        if frecuencia < 1000:
+            return "LARGO_ALCANCE"
+        elif frecuencia < 2500:
+            return "MEDIO_ALCANCE" 
+        else:
+            return "CORTO_ALCANCE"
+    
+    def clasificar_riesgo_salud(self, valor_maximo):
+        """Clasifica el riesgo para la salud basado en valores reales"""
+        if valor_maximo <= 1:
+            return "INSIGNIFICANTE"
+        elif valor_maximo <= 10:
+            return "MUY_BAJO" 
+        elif valor_maximo <= 50:
+            return "BAJO"
+        elif valor_maximo <= 200:
+            return "MODERADO"
+        else:
+            return "ELEVADO"
+    
+    def calcular_campos_realistas(self, datos):
+        """Calcula TODOS los campos mejorados (de tu código probado)"""
+        try:
+            # 1. CÁLCULOS PARA CARACTERÍSTICAS TÉCNICAS (MEJORADO)
+            for caracteristica in datos['caracteristicas_tecnicas']:
+                banda = caracteristica['banda_asignada_mhz']
+                referencia = caracteristica.get('referencia', '')
+                
+                # Extraer frecuencias
+                numeros = re.findall(r'\d+\.?\d*', banda)
+                if len(numeros) >= 2:
+                    freq_min = float(numeros[0])
+                    freq_max = float(numeros[1])
+                    
+                    # ✅ CAMPOS REALISTAS MEJORADOS
+                    caracteristica['frecuencia_central_mhz'] = round((freq_min + freq_max) / 2, 2)
+                    caracteristica['ancho_banda_mhz'] = round(freq_max - freq_min, 2)
+                    caracteristica['tecnologia'] = self.determinar_tecnologia_mejorada(banda, referencia)
+                    caracteristica['cobertura_relativa'] = self.estimar_cobertura_relativa(freq_min)
+            
+            # 2. ESTADÍSTICAS DE NIVELES MEDIDOS
+            if datos['niveles_medidos']:
+                valores_medidos = []
+                distancias = []
+                
+                for nivel in datos['niveles_medidos']:
+                    try:
+                        # Manejar valores como "<0.01061"
+                        valor_str = nivel['valor_medido_uw_cm2']
+                        if valor_str.startswith('<'):
+                            valor = float(valor_str[1:]) / 2  # Aproximación conservadora
+                        else:
+                            valor = float(valor_str)
+                            
+                        distancia = float(nivel['distancia_metros'])
+                        valores_medidos.append(valor)
+                        distancias.append(distancia)
+                    except:
+                        continue
+                
+                if valores_medidos:
+                    max_valor = max(valores_medidos)
+                    
+                    # ✅ ESTADÍSTICAS MEJORADAS
+                    datos['estadisticas_mediciones'] = {
+                        'valor_maximo_uw_cm2': round(max_valor, 5),
+                        'valor_minimo_uw_cm2': round(min(valores_medidos), 5),
+                        'valor_medio_uw_cm2': round(sum(valores_medidos) / len(valores_medidos), 5),
+                        'total_puntos_medida': len(datos['niveles_medidos']),
+                        'distancia_promedio_metros': round(sum(distancias) / len(distancias), 1),
+                        'rango_distancias_metros': f"{min(distancias)}-{max(distancias)}"
+                    }
+                    
+                    # ✅ CUMPLIMIENTO NORMATIVO MEJORADO
+                    datos['cumplimiento_normativas'] = {
+                        'cumple_icnirp': max_valor <= 450,
+                        'porcentaje_limite_icnirp': round((max_valor / 450) * 100, 3),
+                        'margen_seguridad': round(100 - (max_valor / 450) * 100, 3),
+                        'categoria_riesgo': self.clasificar_riesgo_salud(max_valor),
+                        'limite_referencia_uw_cm2': 450
+                    }
+            
+            # 3. ✅ ANÁLISIS DE COBERTURA
+            datos['analisis_cobertura'] = self.analizar_cobertura(datos['caracteristicas_tecnicas'])
+            
+            # 4. ✅ CLASIFICACIÓN DE ESTACIÓN
+            datos['clasificacion_estacion'] = self.clasificar_estacion(datos['caracteristicas_tecnicas'])
+            
+            # 5. ✅ METADATOS DEL ANÁLISIS
+            datos['metadata_analisis'] = {
+                'fecha_analisis': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'total_caracteristicas': len(datos['caracteristicas_tecnicas']),
+                'total_niveles_medidos': len(datos['niveles_medidos']),
+                'tecnologias_detectadas': list(set([ct.get('tecnologia', 'Desconocida') for ct in datos['caracteristicas_tecnicas']])),
+                'version_analisis': '3.0_sentinel'
             }
-        }
-    
-    def _extraer_caracteristicas(self, html: str) -> Dict:
-        """Simula extracción de características de la estación"""
-        operadores = ["TELEFONICA MOVILES ESPAÑA, S.A.U.", "VODAFONE ESPAÑA, S.A.U.", "ORANGE ESPAÑA, S.A.U."]
-        tecnologias = [["2G", "3G", "4G"], ["4G", "5G"], ["3G", "4G"]]
+            
+        except Exception as e:
+            self.logger.debug(f"Error calculando campos realistas: {e}")
         
-        return {
-            "titular_principal": random.choice(operadores),
-            "operadores_activos": [
-                {
-                    "nombre": op,
-                    "porcentaje_antenas": random.randint(30, 70),
-                    "tecnologias": tech,
-                    "cantidad_antenas": random.randint(1, 3),
-                    "codigo_operador": op.split()[0][:3].upper()
-                }
-                for op, tech in zip(random.sample(operadores, random.randint(1, 3)), 
-                                  random.sample(tecnologias, random.randint(1, 3)))
-            ],
-            "clasificacion": {
-                "tipo_estacion": random.choice(["MEDIA_CAPACIDAD", "ALTA_CAPACIDAD", "BAJA_CAPACIDAD"]),
-                "multioperador": True,
-                "total_antenas": random.randint(2, 6),
-                "total_operadores": random.randint(1, 3),
-                "categoria_cnmc": random.choice(["A", "B", "C"])
-            }
-        }
+        return datos
     
-    def _extraer_infraestructura(self, html: str) -> Dict:
-        """Simula extracción de infraestructura tecnológica"""
-        return {
-            "antenas_activas": [
-                {
-                    "id_referencia": f"CSCS-{random.randint(1000000, 3000000)}",
-                    "operador": random.choice(["TELEFONICA", "VODAFONE", "ORANGE"]),
-                    "banda_frecuencia": {
-                        "rango_mhz": "935.10 - 949.90",
-                        "frecuencia_central_mhz": 942.5,
-                        "ancho_banda_mhz": 14.8,
-                        "banda_itu": "900 MHz",
-                        "tipo_banda": "LOW_BAND",
-                        "banda_3gpp": "B8"
-                    },
-                    "tecnologia": "2G/3G",
-                    "estado": "ACTIVA",
-                    "fecha_instalacion": f"201{random.randint(8,9)}-{random.randint(1,12):02d}-{random.randint(1,28):02d}"
-                }
-            ],
-            "resumen_tecnologico": {
-                "tecnologias_activas": ["2G", "3G", "4G"],
-                "banda_mas_baja_mhz": 796.0,
-                "banda_mas_alta_mhz": 3435.0,
-                "rango_total_mhz": 2639.0,
-                "capacidad_total_mhz": 74.8,
-                "indice_diversidad_banda": 0.72,
-                "bandas_operativas": ["800 MHz", "900 MHz", "3.5 GHz"]
-            }
+    def analizar_cobertura(self, caracteristicas):
+        """Analiza la cobertura basada en las tecnologías disponibles"""
+        tecnologias = [ct.get('tecnologia', 'Desconocida') for ct in caracteristicas]
+        
+        cobertura = {
+            'tiene_2g': any('2G' in t for t in tecnologias),
+            'tiene_3g': any('3G' in t for t in tecnologias),
+            'tiene_4g': any('4G' in t for t in tecnologias),
+            'tiene_5g': any('5G' in t for t in tecnologias),
+            'tecnologias_activas': len(set(tecnologias)),
+            'banda_mas_baja': min([ct.get('frecuencia_central_mhz', 0) for ct in caracteristicas]),
+            'banda_mas_alta': max([ct.get('frecuencia_central_mhz', 0) for ct in caracteristicas])
         }
+        
+        # Calcular calidad de cobertura
+        if cobertura['tiene_5g'] and cobertura['tiene_4g'] and cobertura['tiene_2g']:
+            cobertura['calidad'] = "EXCELENTE"
+        elif cobertura['tiene_4g'] and cobertura['tiene_2g']:
+            cobertura['calidad'] = "BUENA"
+        elif cobertura['tiene_2g']:
+            cobertura['calidad'] = "BASICA"
+        else:
+            cobertura['calidad'] = "LIMITADA"
+        
+        return cobertura
     
-    def _extraer_mediciones(self, html: str) -> Dict:
-        """Simula extracción de mediciones de emisiones"""
-        return {
-            "puntos_medicion": [
-                {
-                    "id_punto": "M001",
-                    "distancia_metros": 10.0,
-                    "valor_medido_uw_cm2": 0.00215,
-                    "fecha_medicion": "2023-06-15",
-                    "calidad_medicion": "ALTA",
-                    "instrumento": "NARDA_EPM-600",
-                    "incertidumbre_medicion": 0.0001
-                }
-            ],
-            "analisis_estadistico": {
-                "resumen": {
-                    "valor_maximo_uw_cm2": 0.00215,
-                    "valor_minimo_uw_cm2": 0.00027,
-                    "valor_medio_uw_cm2": 0.00112,
-                    "desviacion_estandar_uw_cm2": 0.00094,
-                    "total_mediciones_validas": 3,
-                    "coeficiente_variacion": 83.9
-                }
-            }
+    def clasificar_estacion(self, caracteristicas):
+        """Clasifica el tipo de estación basado en sus características"""
+        total_antenas = len(caracteristicas)
+        operadores = list(set([ct['operador'] for ct in caracteristicas]))
+        
+        clasificacion = {
+            'total_antenas': total_antenas,
+            'operadores_activos': operadores,
+            'total_operadores': len(operadores)
         }
-    
-    def _evaluar_riesgos(self, html: str) -> Dict:
-        """Simula evaluación de riesgos para la salud"""
-        return {
-            "niveles_referencia": {
-                "limite_legal_uw_cm2": 450.0,
-                "recomendacion_oms_uw_cm2": 100.0,
-                "estandar_internacional": "ICNIRP_2020",
-                "normativa_espanola": "RD_299/2016"
-            },
-            "indicadores_cumplimiento": {
-                "maximo_porcentaje_limite": 0.478,
-                "factor_seguridad_minimo": 209.3,
-                "cumplimiento_legal": "CUMPLE",
-                "margen_seguridad": "MUY_ALTO",
-                "clase_emision": "CLASE_A"
-            }
-        }
-    
-    def _analizar_cobertura(self, html: str) -> Dict:
-        """Simula análisis de cobertura"""
-        return {
-            "calidad_general": "EXCELENTE",
-            "tecnologias_disponibles": {"2g": True, "3g": True, "4g": True, "5g": False},
-            "indices_calidad": {
-                "indice_diversidad_tecnologica": 0.85,
-                "indice_penetracion": 0.75,
-                "indice_capacidad": 0.68,
-                "indice_conectividad": 0.82
-            }
-        }
-    
-    def _analizar_impacto(self, html: str) -> Dict:
-        """Simula análisis de impacto territorial"""
-        return {
-            "poblacion_servida_estimada": random.randint(500, 5000),
-            "area_cobertura_km2": random.uniform(10.0, 100.0),
-            "tipo_servicio": "RURAL_FIJO_MOVIL",
-            "municipios_servidos": [f"MUNICIPIO_{random.randint(1,10)}"]
-        }
-    
-    def _obtener_estado_actualizacion(self, html: str) -> Dict:
-        """Simula obtención del estado de actualización"""
-        return {
-            "ultima_actualizacion": "2024-01-15",
-            "proxima_revision": "2024-07-15",
-            "estado_operativo": "ACTIVA",
-            "confiabilidad_datos": "ALTA",
-            "frecuencia_actualizacion": "SEMESTRAL"
-        }
-    
-    def _generar_metadata_scraping(self, url: str) -> Dict:
-        """Genera metadatos del scraping"""
-        return {
-            "url_scraped": url,
-            "status_code": 200,
-            "response_time_ms": random.randint(200, 800),
-            "campos_extraidos": 45,
-            "campos_calculados": 22,
-            "timestamp_fin": time.strftime('%Y-%m-%dT%H:%M:%S')
-        }
+        
+        # Determinar tipo de estación
+        if total_antenas >= 6:
+            clasificacion['tipo'] = "ESTACION_COMPLETA"
+        elif total_antenas >= 3:
+            clasificacion['tipo'] = "ESTACION_MEDIA"
+        else:
+            clasificacion['tipo'] = "ESTACION_BASICA"
+            
+        # Determinar si es multioperador
+        if len(operadores) > 1:
+            clasificacion['multioperador'] = True
+        else:
+            clasificacion['multioperador'] = False
+            
+        return clasificacion
     
     async def procesar_batch(self, urls_batch: List[str]):
         """Procesa un batch de URLs concurrentemente"""
@@ -380,7 +513,7 @@ class GeoportalScraper:
             with open(archivo_salida, 'w', encoding='utf-8') as f:
                 json.dump({
                     "metadata": {
-                        "fecha_generacion": time.strftime('%Y-%m-%dT%H:%M:%S'),
+                        "fecha_generacion": datetime.now().isoformat(),
                         "total_estaciones": len(datos_lote),
                         "lote_id": lote_id
                     },
