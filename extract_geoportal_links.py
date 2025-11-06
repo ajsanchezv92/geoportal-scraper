@@ -31,10 +31,10 @@ def download_file_from_google_drive(file_id, destination):
 
 def process_file_lines(filepath):
     """
-    Lee el archivo línea por línea, extrae URL + coordenadas.
-    Devuelve lista de líneas formateadas y conteo.
+    Lee el archivo línea por línea, limpia duplicados por emplazamiento
+    y conserva URL + coordenadas + extras.
     """
-    results = []
+    results = {}
     with_coords = 0
     without_coords = 0
 
@@ -43,21 +43,48 @@ def process_file_lines(filepath):
 
     log(f"🔍 Procesando {len(lines)} líneas...", Fore.CYAN)
     for line in tqdm(lines, desc="Extrayendo datos", colour="green"):
-        parts = line.strip().split("|")
+        line = line.strip()
+        if not line:
+            continue
 
-        if len(parts) >= 3 and parts[0].startswith("https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="):
-            url = parts[0].strip()
-            lat = parts[1].strip() if parts[1] else None
-            lon = parts[2].strip() if parts[2] else None
+        parts = line.split("|")
+        if len(parts) < 1:
+            continue
 
-            if lat and lon:
-                results.append(f"{url} | {lat}, {lon}")
-                with_coords += 1
-            else:
-                results.append(url)
-                without_coords += 1
+        url = parts[0].strip()
+        if not url.startswith("https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="):
+            continue
 
-    return sorted(set(results)), with_coords, without_coords
+        # Extrae el código del emplazamiento
+        try:
+            emplazamiento = url.split("emplazamiento=")[1].split("&")[0]
+        except IndexError:
+            continue
+
+        lat = parts[1].strip() if len(parts) > 1 else ""
+        lon = parts[2].strip() if len(parts) > 2 else ""
+
+        # Campos extra (dirección, operador, archivo)
+        extra = "|".join(parts[3:]).strip() if len(parts) > 3 else ""
+
+        if lat and lon:
+            formatted = f"{url}|{lat}|{lon}"
+            with_coords += 1
+        else:
+            formatted = url
+            without_coords += 1
+
+        if extra:
+            formatted += f"|{extra}"
+
+        # Guardamos solo la primera aparición del emplazamiento
+        if emplazamiento not in results:
+            results[emplazamiento] = formatted
+
+    # Ordenamos por código numérico de emplazamiento
+    results_sorted = dict(sorted(results.items(), key=lambda x: int(x[0]) if x[0].isdigit() else x[0]))
+
+    return list(results_sorted.values()), with_coords, without_coords
 
 
 def save_to_txt_splitted(results, output_dir, max_size_mb):
