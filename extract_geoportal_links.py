@@ -79,7 +79,8 @@ def process_file_lines(filepath):
             else:
                 ignored += 1
 
-    return sorted(set(results)), with_coords, without_coords, ignored, processed_lines
+    # ELIMINADO: sorted(set(results)) - esto eliminaba duplicados
+    return results, with_coords, without_coords, ignored, processed_lines
 
 
 def save_to_txt(results, output_dir):
@@ -117,7 +118,7 @@ def main():
         total_unique = with_coords + without_coords
         log("\n📊 RESUMEN FINAL", Fore.MAGENTA)
         log(f"📄 Líneas procesadas: {processed_lines:,}", Fore.WHITE)
-        log(f"🔗 Total de líneas únicas: {total_unique:,}", Fore.WHITE)
+        log(f"🔗 Total de líneas guardadas: {len(results):,}", Fore.WHITE)
         log(f"📍 Con coordenadas: {with_coords:,}", Fore.GREEN)
         log(f"❌ Sin coordenadas: {without_coords:,}", Fore.RED)
         log(f"⚠️ Líneas ignoradas por formato inválido: {ignored:,}", Fore.YELLOW)
