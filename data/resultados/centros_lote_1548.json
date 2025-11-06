@@ -1,0 +1,5772 @@
+{
+  "metadata": {
+    "fecha_generacion": "2025-11-06T15:18:13.353645",
+    "total_estaciones": 21,
+    "lote_id": 1548
+  },
+  "estaciones": [
+    {
+      "estacion_id": "82761",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82761",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.314062",
+        "fecha_procesamiento": "2025-11-06T15:18:13.314067",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82761",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 39.38579745,
+          "longitud": 0.71530323,
+          "altitud_metros": 458.1,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82761"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82761"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G",
+              "3G/4G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "SESE-0800247",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1905.00 - 1910.00",
+              "frecuencia_central_mhz": 1907.5,
+              "ancho_banda_mhz": 5.0,
+              "banda_itu": "OTRA",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.3,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-08-05"
+          },
+          {
+            "id_referencia": "SESE-1400512",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.3,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2022-01-16"
+          },
+          {
+            "id_referencia": "SESE-2000098",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "2140.00 - 2155.00",
+              "frecuencia_central_mhz": 2147.5,
+              "ancho_banda_mhz": 15.0,
+              "banda_itu": "2100 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B1"
+            },
+            "tecnologia": "3G/4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.1,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2022-07-06"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G",
+            "3G/4G"
+          ],
+          "banda_mas_baja_mhz": 1835.1,
+          "banda_mas_alta_mhz": 2147.5,
+          "rango_total_mhz": 312.4000000000001,
+          "capacidad_total_mhz": 40.0,
+          "indice_diversidad_banda": 0.67,
+          "bandas_operativas": [
+            "2100 MHz",
+            "OTRA",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 60.0,
+            "valor_medido_uw_cm2": 0.5732,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.5732,
+            "valor_minimo_uw_cm2": 0.5732,
+            "valor_medio_uw_cm2": 0.5732,
+            "desviacion_estandar_uw_cm2": 0.0,
+            "total_mediciones_validas": 1,
+            "coeficiente_variacion": 0.0
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.127,
+          "factor_seguridad_minimo": 785.1,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "BUENA",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.5,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1860,
+        "area_cobertura_km2": 46.3,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1073,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 555,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 721,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82761"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82761",
+        "status_code": 200,
+        "response_time_ms": 56,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.315233Z"
+      }
+    },
+    {
+      "estacion_id": "82809",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82809",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.281555",
+        "fecha_procesamiento": "2025-11-06T15:18:13.281561",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82809",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 39.62508743,
+          "longitud": -0.71165742,
+          "altitud_metros": 634.9,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82809"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82809"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 2,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 2,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "H H -1300345",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.1,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-03-02"
+          },
+          {
+            "id_referencia": "H H -1600076",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.6,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-02-09"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 107.89999999999998,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 31.0,
+            "valor_medido_uw_cm2": 0.17404,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 43.0,
+            "valor_medido_uw_cm2": 0.28141,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 66.0,
+            "valor_medido_uw_cm2": 0.17836,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 44.0,
+            "valor_medido_uw_cm2": 0.21011,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 36.0,
+            "valor_medido_uw_cm2": 0.25475,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.28141,
+            "valor_minimo_uw_cm2": 0.17404,
+            "valor_medio_uw_cm2": 0.219734,
+            "desviacion_estandar_uw_cm2": 0.04224315357546119,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 19.22467782658177
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.063,
+          "factor_seguridad_minimo": 1599.1,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1979,
+        "area_cobertura_km2": 17.9,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1908,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 873,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 760,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82809"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82809",
+        "status_code": 200,
+        "response_time_ms": 66,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.282745Z"
+      }
+    },
+    {
+      "estacion_id": "82815",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82815",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.331377",
+        "fecha_procesamiento": "2025-11-06T15:18:13.331381",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82815",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 41.06272468,
+          "longitud": 0.59753576,
+          "altitud_metros": 665.5,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82815"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82815"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 2,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 2,
+          "total_operadores": 1,
+          "categoria_cnmc": "A"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "B B -1401521",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.5,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-01-23"
+          },
+          {
+            "id_referencia": "B B -1502172",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.4,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-01-15"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 107.89999999999998,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 24.6,
+            "valor_medido_uw_cm2": 0.49786,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 31.9,
+            "valor_medido_uw_cm2": 1.12565,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 21.1,
+            "valor_medido_uw_cm2": 0.51991,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 38.5,
+            "valor_medido_uw_cm2": 1.15867,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 46.0,
+            "valor_medido_uw_cm2": 1.02944,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 1.15867,
+            "valor_minimo_uw_cm2": 0.49786,
+            "valor_medio_uw_cm2": 0.866306,
+            "desviacion_estandar_uw_cm2": 0.2949885979220214,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 34.051316500407644
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.257,
+          "factor_seguridad_minimo": 388.4,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_2_MUY_BAJO",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 4809,
+        "area_cobertura_km2": 93.6,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1602,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1478,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 752,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82815"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82815",
+        "status_code": 200,
+        "response_time_ms": 73,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.332747Z"
+      }
+    },
+    {
+      "estacion_id": "82817",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82817",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.351903",
+        "fecha_procesamiento": "2025-11-06T15:18:13.351908",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82817",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 40.44840673,
+          "longitud": 0.24071493,
+          "altitud_metros": 945.8,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82817"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82817"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G"
+            ],
+            "cantidad_antenas": 1,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 1,
+          "total_operadores": 1,
+          "categoria_cnmc": "A"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "B B -1600436",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.9,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-01-23"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 1835.1,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 0.0,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 13.3,
+            "valor_medido_uw_cm2": 0.70476,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 10.3,
+            "valor_medido_uw_cm2": 0.69614,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 8.6,
+            "valor_medido_uw_cm2": 0.55004,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 8.5,
+            "valor_medido_uw_cm2": 0.98806,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 12.7,
+            "valor_medido_uw_cm2": 0.6706,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.98806,
+            "valor_minimo_uw_cm2": 0.55004,
+            "valor_medio_uw_cm2": 0.72192,
+            "desviacion_estandar_uw_cm2": 0.14419850928494374,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 19.974305918237995
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.22,
+          "factor_seguridad_minimo": 455.4,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "SUFICIENTE",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": false,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.25,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 763,
+        "area_cobertura_km2": 97.6,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1136,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 908,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 555,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82817"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82817",
+        "status_code": 200,
+        "response_time_ms": 74,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.353040Z"
+      }
+    },
+    {
+      "estacion_id": "82826",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82826",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.319385",
+        "fecha_procesamiento": "2025-11-06T15:18:13.319390",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82826",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 40.56953143,
+          "longitud": -0.50727133,
+          "altitud_metros": 19.3,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82826"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82826"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G"
+            ],
+            "cantidad_antenas": 1,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 1,
+          "total_operadores": 1,
+          "categoria_cnmc": "B"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "M M -2200432",
+            "operador": "VODAFONE ESPAÑA, S.A.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.4,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2022-08-19"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 1835.1,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 0.0,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 47.0,
+            "valor_medido_uw_cm2": 0.36935,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 30.0,
+            "valor_medido_uw_cm2": 0.3094,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 48.0,
+            "valor_medido_uw_cm2": 0.01528,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 51.0,
+            "valor_medido_uw_cm2": 0.07735,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 34.0,
+            "valor_medido_uw_cm2": 0.12998,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.36935,
+            "valor_minimo_uw_cm2": 0.01528,
+            "valor_medio_uw_cm2": 0.18027200000000002,
+            "desviacion_estandar_uw_cm2": 0.1362124178480068,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 75.55938684210903
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.082,
+          "factor_seguridad_minimo": 1218.4,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "SUFICIENTE",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": false,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.25,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 3021,
+        "area_cobertura_km2": 67.0,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1422,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 701,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 639,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82826"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82826",
+        "status_code": 200,
+        "response_time_ms": 62,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.320427Z"
+      }
+    },
+    {
+      "estacion_id": "82831",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82831",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.266216",
+        "fecha_procesamiento": "2025-11-06T15:18:13.266220",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82831",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 40.08711936,
+          "longitud": -0.40715709,
+          "altitud_metros": 127.6,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82831"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82831"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "GRGR-2400495",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.1,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-04-19"
+          },
+          {
+            "id_referencia": "GRGR-2400493",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.0,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2019-09-17"
+          },
+          {
+            "id_referencia": "GRGR-2400494",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.8,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-07-27"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 988.0999999999999,
+          "capacidad_total_mhz": 40.0,
+          "indice_diversidad_banda": 0.67,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 47.0,
+            "valor_medido_uw_cm2": 0.02716,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 30.0,
+            "valor_medido_uw_cm2": 0.39481,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 51.0,
+            "valor_medido_uw_cm2": 0.12998,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 22.0,
+            "valor_medido_uw_cm2": 4.83643,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 33.0,
+            "valor_medido_uw_cm2": 0.33274,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 4.83643,
+            "valor_minimo_uw_cm2": 0.02716,
+            "valor_medio_uw_cm2": 1.144224,
+            "desviacion_estandar_uw_cm2": 1.8508936027616498,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 161.75972560981504
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 1.075,
+          "factor_seguridad_minimo": 93.0,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_2_MUY_BAJO",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 2198,
+        "area_cobertura_km2": 22.5,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1952,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1102,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 300,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82831"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82831",
+        "status_code": 200,
+        "response_time_ms": 82,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.267484Z"
+      }
+    },
+    {
+      "estacion_id": "82833",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82833",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.207236",
+        "fecha_procesamiento": "2025-11-06T15:18:13.207243",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82833",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 39.50056544,
+          "longitud": -0.98293431,
+          "altitud_metros": 190.3,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82833"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82833"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "5G",
+              "4G/5G"
+            ],
+            "cantidad_antenas": 2,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 2,
+          "total_operadores": 1,
+          "categoria_cnmc": "B"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "PMPM-2301132",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "768.00 - 778.00",
+              "frecuencia_central_mhz": 773.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "700 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "4G/5G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.1,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-12-09"
+          },
+          {
+            "id_referencia": "PMPM-2400970",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "3710.00 - 3800.00",
+              "frecuencia_central_mhz": 3755.0,
+              "ancho_banda_mhz": 90.0,
+              "banda_itu": "3.5 GHz",
+              "tipo_banda": "HIGH_BAND",
+              "banda_3gpp": "n78"
+            },
+            "tecnologia": "5G",
+            "caracteristicas_cobertura": {
+              "tipo": "CORTO_ALCANCE",
+              "alcance_estimado_km": 1.3,
+              "penetracion_edificios": "BAJA",
+              "ancho_haz_grados": 25
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2018-03-12"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "5G",
+            "4G/5G"
+          ],
+          "banda_mas_baja_mhz": 773.0,
+          "banda_mas_alta_mhz": 3755.0,
+          "rango_total_mhz": 2982.0,
+          "capacidad_total_mhz": 100.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "3.5 GHz",
+            "700 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 99.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 92.0,
+            "valor_medido_uw_cm2": 0.16138,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 39.0,
+            "valor_medido_uw_cm2": 0.05613,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 77.0,
+            "valor_medido_uw_cm2": 0.02716,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 69.0,
+            "valor_medido_uw_cm2": 0.02549,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M006",
+            "distancia_metros": 27.0,
+            "valor_medido_uw_cm2": 0.08618,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.16138,
+            "valor_minimo_uw_cm2": 0.02387,
+            "valor_medio_uw_cm2": 0.06336833333333333,
+            "desviacion_estandar_uw_cm2": 0.04913414000355444,
+            "total_mediciones_validas": 6,
+            "coeficiente_variacion": 77.53737145822747
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.036,
+          "factor_seguridad_minimo": 2788.4,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "BUENA",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": false,
+          "4g": true,
+          "5g": true
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.5,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 715,
+        "area_cobertura_km2": 93.4,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1545,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1101,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 498,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82833"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82833",
+        "status_code": 200,
+        "response_time_ms": 65,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.208461Z"
+      }
+    },
+    {
+      "estacion_id": "82849",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82849",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.251755",
+        "fecha_procesamiento": "2025-11-06T15:18:13.251759",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82849",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 40.48422339,
+          "longitud": 0.62033701,
+          "altitud_metros": 974.4,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82849"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82849"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G",
+              "3G/4G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "SESE-1500228",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.4,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2023-08-17"
+          },
+          {
+            "id_referencia": "SESE-2000948",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "2140.00 - 2155.00",
+              "frecuencia_central_mhz": 2147.5,
+              "ancho_banda_mhz": 15.0,
+              "banda_itu": "2100 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B1"
+            },
+            "tecnologia": "3G/4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.8,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-01-10"
+          },
+          {
+            "id_referencia": "SESE-1500227",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.7,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-02-17"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G",
+            "3G/4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 2147.5,
+          "rango_total_mhz": 1300.5,
+          "capacidad_total_mhz": 45.0,
+          "indice_diversidad_banda": 0.67,
+          "bandas_operativas": [
+            "2100 MHz",
+            "800 MHz",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 100.0,
+            "valor_medido_uw_cm2": 1.28385,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 36.0,
+            "valor_medido_uw_cm2": 1.39104,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 100.0,
+            "valor_medido_uw_cm2": 1.42773,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 50.0,
+            "valor_medido_uw_cm2": 1.44006,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 1.44006,
+            "valor_minimo_uw_cm2": 1.28385,
+            "valor_medio_uw_cm2": 1.38567,
+            "desviacion_estandar_uw_cm2": 0.061488748970848314,
+            "total_mediciones_validas": 4,
+            "coeficiente_variacion": 4.437474216144415
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.32,
+          "factor_seguridad_minimo": 312.5,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_2_MUY_BAJO",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "BUENA",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.5,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1670,
+        "area_cobertura_km2": 47.6,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1597,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 607,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 663,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82849"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82849",
+        "status_code": 200,
+        "response_time_ms": 72,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.253099Z"
+      }
+    },
+    {
+      "estacion_id": "82853",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82853",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.302381",
+        "fecha_procesamiento": "2025-11-06T15:18:13.302385",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82853",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 39.71730774,
+          "longitud": -1.01722862,
+          "altitud_metros": 278.9,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82853"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82853"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G"
+            ],
+            "cantidad_antenas": 1,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 1,
+          "total_operadores": 1,
+          "categoria_cnmc": "B"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "GRGR-1300156",
+            "operador": "VODAFONE ESPAÑA, S.A.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.4,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2019-01-21"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G"
+          ],
+          "banda_mas_baja_mhz": 954.9,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 0.0,
+          "capacidad_total_mhz": 10.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 54.0,
+            "valor_medido_uw_cm2": 0.10865,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.10865,
+            "valor_minimo_uw_cm2": 0.10865,
+            "valor_medio_uw_cm2": 0.10865,
+            "desviacion_estandar_uw_cm2": 0.0,
+            "total_mediciones_validas": 1,
+            "coeficiente_variacion": 0.0
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.024,
+          "factor_seguridad_minimo": 4141.7,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "BUENA",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": false,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.5,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 878,
+        "area_cobertura_km2": 83.0,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1636,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 561,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 937,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82853"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82853",
+        "status_code": 200,
+        "response_time_ms": 65,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.303297Z"
+      }
+    },
+    {
+      "estacion_id": "82925",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82925",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.238473",
+        "fecha_procesamiento": "2025-11-06T15:18:13.238480",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82925",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 40.48675628,
+          "longitud": -1.22543502,
+          "altitud_metros": 757.2,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82925"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82925"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "A A -1401021",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.3,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2023-09-19"
+          },
+          {
+            "id_referencia": "A A -2400498",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.8,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-08-18"
+          },
+          {
+            "id_referencia": "A A -1900427",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.4,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-07-03"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 988.0999999999999,
+          "capacidad_total_mhz": 40.0,
+          "indice_diversidad_banda": 0.67,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 84.0,
+            "valor_medido_uw_cm2": 0.05371,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 67.0,
+            "valor_medido_uw_cm2": 0.01793,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 67.0,
+            "valor_medido_uw_cm2": 0.87864,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 44.0,
+            "valor_medido_uw_cm2": 0.92758,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 43.0,
+            "valor_medido_uw_cm2": 0.17836,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M006",
+            "distancia_metros": 61.0,
+            "valor_medido_uw_cm2": 0.16977,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M007",
+            "distancia_metros": 51.0,
+            "valor_medido_uw_cm2": 0.13372,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.92758,
+            "valor_minimo_uw_cm2": 0.01793,
+            "valor_medio_uw_cm2": 0.33710142857142855,
+            "desviacion_estandar_uw_cm2": 0.3622691824529131,
+            "total_mediciones_validas": 7,
+            "coeficiente_variacion": 107.46592916800759
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.206,
+          "factor_seguridad_minimo": 485.1,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 3879,
+        "area_cobertura_km2": 80.1,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1916,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1397,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 741,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82925"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82925",
+        "status_code": 200,
+        "response_time_ms": 81,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.239907Z"
+      }
+    },
+    {
+      "estacion_id": "82951",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82951",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.325495",
+        "fecha_procesamiento": "2025-11-06T15:18:13.325500",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82951",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 39.88353799,
+          "longitud": 0.5259068,
+          "altitud_metros": 491.3,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82951"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82951"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 2,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 2,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "T T -1601010",
+            "operador": "VODAFONE ESPAÑA, S.A.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.3,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-10-03"
+          },
+          {
+            "id_referencia": "T T -1600448",
+            "operador": "VODAFONE ESPAÑA, S.A.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.9,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-10-03"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 107.89999999999998,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 38.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 94.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 73.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 69.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 96.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.02387,
+            "valor_minimo_uw_cm2": 0.02387,
+            "valor_medio_uw_cm2": 0.02387,
+            "desviacion_estandar_uw_cm2": 0.0,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 0.0
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.005,
+          "factor_seguridad_minimo": 18852.1,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1537,
+        "area_cobertura_km2": 68.4,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1790,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 621,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 960,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82951"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82951",
+        "status_code": 200,
+        "response_time_ms": 66,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.326759Z"
+      }
+    },
+    {
+      "estacion_id": "82970",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82970",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.228258",
+        "fecha_procesamiento": "2025-11-06T15:18:13.228263",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82970",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 39.54335452,
+          "longitud": -0.45142824,
+          "altitud_metros": 220.4,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82970"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82970"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 2,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 2,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "VAVA-1800460",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.4,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-12-19"
+          },
+          {
+            "id_referencia": "VAVA-0800063",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.5,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2022-09-20"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 107.89999999999998,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 65.0,
+            "valor_medido_uw_cm2": 0.33871,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 84.0,
+            "valor_medido_uw_cm2": 0.25475,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 55.0,
+            "valor_medido_uw_cm2": 0.25475,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 93.0,
+            "valor_medido_uw_cm2": 0.21486,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 64.0,
+            "valor_medido_uw_cm2": 0.33871,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.33871,
+            "valor_minimo_uw_cm2": 0.21486,
+            "valor_medio_uw_cm2": 0.280356,
+            "desviacion_estandar_uw_cm2": 0.04982256340253883,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 17.771177860484112
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.075,
+          "factor_seguridad_minimo": 1328.6,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1062,
+        "area_cobertura_km2": 98.7,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1611,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1384,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 593,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82970"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82970",
+        "status_code": 200,
+        "response_time_ms": 67,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.229443Z"
+      }
+    },
+    {
+      "estacion_id": "82992",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82992",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.246122",
+        "fecha_procesamiento": "2025-11-06T15:18:13.246127",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "82992",
+          "codigo_provincia": "82"
+        },
+        "coordenadas": {
+          "latitud": 40.66949833,
+          "longitud": -0.66808435,
+          "altitud_metros": 497.7,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_82992"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "82992"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 2,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 2,
+          "total_operadores": 1,
+          "categoria_cnmc": "A"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "COCO-1700219",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.1,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-06-06"
+          },
+          {
+            "id_referencia": "COCO-1500435",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.7,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-01-01"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 107.89999999999998,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 98.0,
+            "valor_medido_uw_cm2": 0.03631,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 95.0,
+            "valor_medido_uw_cm2": 0.03066,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 92.0,
+            "valor_medido_uw_cm2": 0.14526,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 89.0,
+            "valor_medido_uw_cm2": 0.04244,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 96.0,
+            "valor_medido_uw_cm2": 0.01658,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.14526,
+            "valor_minimo_uw_cm2": 0.01658,
+            "valor_medio_uw_cm2": 0.05425,
+            "desviacion_estandar_uw_cm2": 0.0463026064061193,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 85.35042655505862
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.032,
+          "factor_seguridad_minimo": 3097.9,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1995,
+        "area_cobertura_km2": 33.2,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1837,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1153,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 862,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_82992"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=82992",
+        "status_code": 200,
+        "response_time_ms": 75,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.247368Z"
+      }
+    },
+    {
+      "estacion_id": "83",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.222319",
+        "fecha_procesamiento": "2025-11-06T15:18:13.222325",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 39.71835881,
+          "longitud": 0.67151068,
+          "altitud_metros": 529.4,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G",
+              "5G",
+              "4G/5G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "B"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "M M -2402939",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "768.00 - 778.00",
+              "frecuencia_central_mhz": 773.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "700 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "4G/5G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.4,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2017-05-06"
+          },
+          {
+            "id_referencia": "M M -1501163",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.0,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-11-10"
+          },
+          {
+            "id_referencia": "M M -2000582",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "3710.00 - 3800.00",
+              "frecuencia_central_mhz": 3755.0,
+              "ancho_banda_mhz": 90.0,
+              "banda_itu": "3.5 GHz",
+              "tipo_banda": "HIGH_BAND",
+              "banda_3gpp": "n78"
+            },
+            "tecnologia": "5G",
+            "caracteristicas_cobertura": {
+              "tipo": "CORTO_ALCANCE",
+              "alcance_estimado_km": 0.7,
+              "penetracion_edificios": "BAJA",
+              "ancho_haz_grados": 25
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-08-20"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G",
+            "5G",
+            "4G/5G"
+          ],
+          "banda_mas_baja_mhz": 773.0,
+          "banda_mas_alta_mhz": 3755.0,
+          "rango_total_mhz": 2982.0,
+          "capacidad_total_mhz": 110.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "3.5 GHz",
+            "700 MHz",
+            "800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 51.0,
+            "valor_medido_uw_cm2": 0.20542,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 37.0,
+            "valor_medido_uw_cm2": 0.10865,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 59.0,
+            "valor_medido_uw_cm2": 0.03249,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 80.0,
+            "valor_medido_uw_cm2": 0.29245,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 99.0,
+            "valor_medido_uw_cm2": 0.11207,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M006",
+            "distancia_metros": 77.0,
+            "valor_medido_uw_cm2": 0.12266,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M007",
+            "distancia_metros": 46.0,
+            "valor_medido_uw_cm2": 0.04459,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.29245,
+            "valor_minimo_uw_cm2": 0.03249,
+            "valor_medio_uw_cm2": 0.13119,
+            "desviacion_estandar_uw_cm2": 0.08426363170770311,
+            "total_mediciones_validas": 7,
+            "coeficiente_variacion": 64.2302246418958
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.065,
+          "factor_seguridad_minimo": 1538.7,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "BUENA",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": false,
+          "4g": true,
+          "5g": true
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.5,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1921,
+        "area_cobertura_km2": 59.7,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1967,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1216,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 246,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83",
+        "status_code": 200,
+        "response_time_ms": 67,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.223763Z"
+      }
+    },
+    {
+      "estacion_id": "83000",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83000",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.345918",
+        "fecha_procesamiento": "2025-11-06T15:18:13.345925",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83000",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 41.12173749,
+          "longitud": 0.00334526,
+          "altitud_metros": 839.8,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83000"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83000"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G",
+              "4G/5G",
+              "3G/4G"
+            ],
+            "cantidad_antenas": 4,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 4,
+          "total_operadores": 1,
+          "categoria_cnmc": "B"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "BABA-1200254",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.4,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-09-17"
+          },
+          {
+            "id_referencia": "BABA-2100065",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.7,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2019-08-08"
+          },
+          {
+            "id_referencia": "BABA-1900337",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "2140.00 - 2155.00",
+              "frecuencia_central_mhz": 2147.5,
+              "ancho_banda_mhz": 15.0,
+              "banda_itu": "2100 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B1"
+            },
+            "tecnologia": "3G/4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.5,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2023-11-13"
+          },
+          {
+            "id_referencia": "BABA-2500234",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "768.00 - 778.00",
+              "frecuencia_central_mhz": 773.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "700 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "4G/5G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.9,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-07-28"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G",
+            "4G/5G",
+            "3G/4G"
+          ],
+          "banda_mas_baja_mhz": 773.0,
+          "banda_mas_alta_mhz": 2147.5,
+          "rango_total_mhz": 1374.5,
+          "capacidad_total_mhz": 45.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "700 MHz",
+            "2100 MHz",
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 50.0,
+            "valor_medido_uw_cm2": 0.26526,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 67.0,
+            "valor_medido_uw_cm2": 0.3094,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 50.0,
+            "valor_medido_uw_cm2": 0.33871,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 60.0,
+            "valor_medido_uw_cm2": 0.29245,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 45.0,
+            "valor_medido_uw_cm2": 0.14526,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M006",
+            "distancia_metros": 60.0,
+            "valor_medido_uw_cm2": 0.27597,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.33871,
+            "valor_minimo_uw_cm2": 0.14526,
+            "valor_medio_uw_cm2": 0.271175,
+            "desviacion_estandar_uw_cm2": 0.061083711617746346,
+            "total_mediciones_validas": 6,
+            "coeficiente_variacion": 22.525568956484317
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.075,
+          "factor_seguridad_minimo": 1328.6,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": true
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 1.0,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 3225,
+        "area_cobertura_km2": 89.1,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1336,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 930,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 303,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83000"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83000",
+        "status_code": 200,
+        "response_time_ms": 86,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.347452Z"
+      }
+    },
+    {
+      "estacion_id": "83010",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83010",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.295891",
+        "fecha_procesamiento": "2025-11-06T15:18:13.295896",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83010",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 40.15749924,
+          "longitud": 0.22296511,
+          "altitud_metros": 3.2,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83010"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83010"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G",
+              "4G/5G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "POPO-1800181",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.2,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2019-08-16"
+          },
+          {
+            "id_referencia": "POPO-1600002",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.9,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2022-08-10"
+          },
+          {
+            "id_referencia": "POPO-2400787",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "768.00 - 778.00",
+              "frecuencia_central_mhz": 773.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "700 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "4G/5G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.1,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2019-05-01"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G",
+            "4G/5G"
+          ],
+          "banda_mas_baja_mhz": 773.0,
+          "banda_mas_alta_mhz": 954.9,
+          "rango_total_mhz": 181.89999999999998,
+          "capacidad_total_mhz": 30.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "700 MHz",
+            "800 MHz",
+            "900 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 13.0,
+            "valor_medido_uw_cm2": 0.08923,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 25.0,
+            "valor_medido_uw_cm2": 0.01061,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 11.0,
+            "valor_medido_uw_cm2": 0.16138,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 50.0,
+            "valor_medido_uw_cm2": 0.02231,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 44.0,
+            "valor_medido_uw_cm2": 0.02387,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.16138,
+            "valor_minimo_uw_cm2": 0.01061,
+            "valor_medio_uw_cm2": 0.06148,
+            "desviacion_estandar_uw_cm2": 0.0570729890578722,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 92.83179742659759
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.036,
+          "factor_seguridad_minimo": 2788.4,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": true
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 1.0,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 4238,
+        "area_cobertura_km2": 35.6,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1906,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 721,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 912,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83010"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83010",
+        "status_code": 200,
+        "response_time_ms": 58,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.297490Z"
+      }
+    },
+    {
+      "estacion_id": "83022",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83022",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.339498",
+        "fecha_procesamiento": "2025-11-06T15:18:13.339503",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83022",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 39.4596523,
+          "longitud": 0.05580642,
+          "altitud_metros": 134.8,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83022"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83022"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G",
+              "3G/4G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "B"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "MAMA-2500445",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.6,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-05-06"
+          },
+          {
+            "id_referencia": "MAMA-2500446",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.8,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-01-22"
+          },
+          {
+            "id_referencia": "MAMA-2000076",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "2140.00 - 2155.00",
+              "frecuencia_central_mhz": 2147.5,
+              "ancho_banda_mhz": 15.0,
+              "banda_itu": "2100 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B1"
+            },
+            "tecnologia": "3G/4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 4.0,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2021-06-18"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G",
+            "3G/4G"
+          ],
+          "banda_mas_baja_mhz": 1835.1,
+          "banda_mas_alta_mhz": 2147.5,
+          "rango_total_mhz": 312.4000000000001,
+          "capacidad_total_mhz": 55.0,
+          "indice_diversidad_banda": 0.67,
+          "bandas_operativas": [
+            "2100 MHz",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 30.0,
+            "valor_medido_uw_cm2": 0.36935,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 6.0,
+            "valor_medido_uw_cm2": 13.6747,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 32.0,
+            "valor_medido_uw_cm2": 0.26526,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 4.0,
+            "valor_medido_uw_cm2": 4.54642,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 7.0,
+            "valor_medido_uw_cm2": 23.38838,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 23.38838,
+            "valor_minimo_uw_cm2": 0.26526,
+            "valor_medio_uw_cm2": 8.448822,
+            "desviacion_estandar_uw_cm2": 8.921630907883154,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 105.59615184085015
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 5.197,
+          "factor_seguridad_minimo": 19.2,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "SUFICIENTE",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_3_BAJO",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "BUENA",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.5,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 749,
+        "area_cobertura_km2": 35.7,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1670,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 620,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 852,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83022"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83022",
+        "status_code": 200,
+        "response_time_ms": 80,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.340922Z"
+      }
+    },
+    {
+      "estacion_id": "83031",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83031",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.215739",
+        "fecha_procesamiento": "2025-11-06T15:18:13.215744",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83031",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 41.03883252,
+          "longitud": -1.22699947,
+          "altitud_metros": 423.8,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83031"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83031"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G"
+            ],
+            "cantidad_antenas": 1,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 1,
+          "total_operadores": 1,
+          "categoria_cnmc": "A"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "B B -2402630",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.6,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2019-12-18"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 1835.1,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 0.0,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 50.0,
+            "valor_medido_uw_cm2": 0.12998,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 90.0,
+            "valor_medido_uw_cm2": 0.25998,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 45.0,
+            "valor_medido_uw_cm2": 0.63728,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 55.0,
+            "valor_medido_uw_cm2": 0.27059,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 55.0,
+            "valor_medido_uw_cm2": 0.21011,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M006",
+            "distancia_metros": 12.0,
+            "valor_medido_uw_cm2": 5.27641,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 5.27641,
+            "valor_minimo_uw_cm2": 0.12998,
+            "valor_medio_uw_cm2": 1.130725,
+            "desviacion_estandar_uw_cm2": 1.8608798856880402,
+            "total_mediciones_validas": 6,
+            "coeficiente_variacion": 164.5740463585788
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 1.173,
+          "factor_seguridad_minimo": 85.3,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_2_MUY_BAJO",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "SUFICIENTE",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": false,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.25,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1467,
+        "area_cobertura_km2": 69.1,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1351,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 1294,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 302,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83031"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83031",
+        "status_code": 200,
+        "response_time_ms": 68,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.216952Z"
+      }
+    },
+    {
+      "estacion_id": "83034",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83034",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.272454",
+        "fecha_procesamiento": "2025-11-06T15:18:13.272459",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83034",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 39.89475165,
+          "longitud": -0.27899097,
+          "altitud_metros": 539.8,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83034"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83034"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "4G"
+            ],
+            "cantidad_antenas": 1,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "BAJA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 1,
+          "total_operadores": 1,
+          "categoria_cnmc": "A"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "SSSS-2300142",
+            "operador": "VODAFONE ESPAÑA, S.A.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 3.7,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2016-09-02"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 1835.1,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 0.0,
+          "capacidad_total_mhz": 20.0,
+          "indice_diversidad_banda": 1.0,
+          "bandas_operativas": [
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 44.0,
+            "valor_medido_uw_cm2": 0.05613,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 53.0,
+            "valor_medido_uw_cm2": 0.3094,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 29.0,
+            "valor_medido_uw_cm2": 0.06369,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 57.0,
+            "valor_medido_uw_cm2": 0.01061,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 38.0,
+            "valor_medido_uw_cm2": 0.01658,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.3094,
+            "valor_minimo_uw_cm2": 0.01061,
+            "valor_medio_uw_cm2": 0.091282,
+            "desviacion_estandar_uw_cm2": 0.11105026238600249,
+            "total_mediciones_validas": 5,
+            "coeficiente_variacion": 121.65625466795478
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.069,
+          "factor_seguridad_minimo": 1454.4,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "SUFICIENTE",
+        "tecnologias_disponibles": {
+          "2g": false,
+          "3g": false,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.25,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1518,
+        "area_cobertura_km2": 98.8,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1285,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 672,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 359,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83034"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83034",
+        "status_code": 200,
+        "response_time_ms": 77,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.273589Z"
+      }
+    },
+    {
+      "estacion_id": "83039",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83039",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.259761",
+        "fecha_procesamiento": "2025-11-06T15:18:13.259767",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83039",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 41.25533344,
+          "longitud": 0.57327663,
+          "altitud_metros": 868.7,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83039"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83039"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G",
+              "4G/5G"
+            ],
+            "cantidad_antenas": 4,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 4,
+          "total_operadores": 1,
+          "categoria_cnmc": "A"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "MUMU-1600343",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.6,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2022-09-15"
+          },
+          {
+            "id_referencia": "MUMU-2500179",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "768.00 - 778.00",
+              "frecuencia_central_mhz": 773.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "700 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "4G/5G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.8,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-04-27"
+          },
+          {
+            "id_referencia": "MUMU-2100968",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.8,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2015-10-14"
+          },
+          {
+            "id_referencia": "MUMU-2100969",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.0,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2018-09-20"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G",
+            "4G/5G"
+          ],
+          "banda_mas_baja_mhz": 773.0,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 1062.1,
+          "capacidad_total_mhz": 50.0,
+          "indice_diversidad_banda": 0.75,
+          "bandas_operativas": [
+            "700 MHz",
+            "800 MHz",
+            "900 MHz",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 34.0,
+            "valor_medido_uw_cm2": 0.16138,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 34.0,
+            "valor_medido_uw_cm2": 0.06112,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 10.0,
+            "valor_medido_uw_cm2": 7.00802,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 33.0,
+            "valor_medido_uw_cm2": 0.06369,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 7.00802,
+            "valor_minimo_uw_cm2": 0.06112,
+            "valor_medio_uw_cm2": 1.8235525000000001,
+            "desviacion_estandar_uw_cm2": 2.993526558019613,
+            "total_mediciones_validas": 4,
+            "coeficiente_variacion": 164.15905536142296
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 1.557,
+          "factor_seguridad_minimo": 64.2,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_2_MUY_BAJO",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": true
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 1.0,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 1612,
+        "area_cobertura_km2": 58.2,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1521,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 546,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 333,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83039"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83039",
+        "status_code": 200,
+        "response_time_ms": 101,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.261712Z"
+      }
+    },
+    {
+      "estacion_id": "83045",
+      "url_oficial": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83045",
+      "metadata": {
+        "fecha_extraccion": "2025-11-06T15:18:13.287400",
+        "fecha_procesamiento": "2025-11-06T15:18:13.287404",
+        "version_esquema": "3.0.0",
+        "fuente_verificada": true,
+        "hash_verificacion": "hash_1762442293"
+      },
+      "informacion_geografica": {
+        "direccion": {
+          "via": "Dirección",
+          "municipio": "",
+          "provincia": "",
+          "codigo_municipio": "83045",
+          "codigo_provincia": "83"
+        },
+        "coordenadas": {
+          "latitud": 40.89741159,
+          "longitud": 0.4314526,
+          "altitud_metros": 656.3,
+          "sistema_referencia": "ETRS89",
+          "precision_ubicacion": "ALTA",
+          "geo_hash": "hash_83045"
+        },
+        "contexto_geografico": {
+          "tipo_zona": "RESIDENCIAL",
+          "densidad_poblacion": "BAJA",
+          "clasificacion_entorno": "ZONA_NO_URBANA",
+          "ine_codigo": "83045"
+        }
+      },
+      "caracteristicas_estacion": {
+        "titular_principal": "VODAFONE ESPAÑA, S.A.U.",
+        "operadores_activos": [
+          {
+            "nombre": "VODAFONE ESPAÑA, S.A.U.",
+            "porcentaje_antenas": 100.0,
+            "tecnologias": [
+              "2G/3G",
+              "4G"
+            ],
+            "cantidad_antenas": 3,
+            "codigo_operador": "VOD"
+          }
+        ],
+        "clasificacion": {
+          "tipo_estacion": "MEDIA_CAPACIDAD",
+          "multioperador": false,
+          "total_antenas": 3,
+          "total_operadores": 1,
+          "categoria_cnmc": "C"
+        }
+      },
+      "infraestructura_tecnologica": {
+        "antenas_activas": [
+          {
+            "id_referencia": "H H -2300588",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "842.00 - 852.00",
+              "frecuencia_central_mhz": 847.0,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "800 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B20"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 4.5,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2018-08-26"
+          },
+          {
+            "id_referencia": "H H -2200529",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "1825.10 - 1845.10",
+              "frecuencia_central_mhz": 1835.1,
+              "ancho_banda_mhz": 20.0,
+              "banda_itu": "1800 MHz",
+              "tipo_banda": "MID_BAND",
+              "banda_3gpp": "B3"
+            },
+            "tecnologia": "4G",
+            "caracteristicas_cobertura": {
+              "tipo": "MEDIO_ALCANCE",
+              "alcance_estimado_km": 2.8,
+              "penetracion_edificios": "MEDIA",
+              "ancho_haz_grados": 45
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-03-17"
+          },
+          {
+            "id_referencia": "H H -2200527",
+            "operador": "VODAFONE ESPAÑA, S.A.U.",
+            "banda_frecuencia": {
+              "rango_mhz": "949.90 - 959.90",
+              "frecuencia_central_mhz": 954.9,
+              "ancho_banda_mhz": 10.0,
+              "banda_itu": "900 MHz",
+              "tipo_banda": "LOW_BAND",
+              "banda_3gpp": "B8"
+            },
+            "tecnologia": "2G/3G",
+            "caracteristicas_cobertura": {
+              "tipo": "LARGO_ALCANCE",
+              "alcance_estimado_km": 5.1,
+              "penetracion_edificios": "ALTA",
+              "ancho_haz_grados": 65
+            },
+            "estado": "ACTIVA",
+            "fecha_instalacion": "2020-07-04"
+          }
+        ],
+        "resumen_tecnologico": {
+          "tecnologias_activas": [
+            "2G/3G",
+            "4G"
+          ],
+          "banda_mas_baja_mhz": 847.0,
+          "banda_mas_alta_mhz": 1835.1,
+          "rango_total_mhz": 988.0999999999999,
+          "capacidad_total_mhz": 40.0,
+          "indice_diversidad_banda": 0.67,
+          "bandas_operativas": [
+            "800 MHz",
+            "900 MHz",
+            "1800 MHz"
+          ]
+        }
+      },
+      "mediciones_emisiones": {
+        "puntos_medicion": [
+          {
+            "id_punto": "M001",
+            "distancia_metros": 20.0,
+            "valor_medido_uw_cm2": 0.41447,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M002",
+            "distancia_metros": 26.0,
+            "valor_medido_uw_cm2": 0.38836,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M003",
+            "distancia_metros": 48.0,
+            "valor_medido_uw_cm2": 0.17836,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M004",
+            "distancia_metros": 42.0,
+            "valor_medido_uw_cm2": 0.16977,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M005",
+            "distancia_metros": 45.0,
+            "valor_medido_uw_cm2": 0.19165,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          },
+          {
+            "id_punto": "M006",
+            "distancia_metros": 60.0,
+            "valor_medido_uw_cm2": 0.41447,
+            "fecha_medicion": "2023-06-15",
+            "calidad_medicion": "ALTA",
+            "instrumento": "NARDA_EPM-600",
+            "incertidumbre_medicion": 0.0001
+          }
+        ],
+        "analisis_estadistico": {
+          "resumen": {
+            "valor_maximo_uw_cm2": 0.41447,
+            "valor_minimo_uw_cm2": 0.16977,
+            "valor_medio_uw_cm2": 0.29284666666666664,
+            "desviacion_estandar_uw_cm2": 0.11343360417246538,
+            "total_mediciones_validas": 6,
+            "coeficiente_variacion": 38.73481145051974
+          },
+          "tendencia_distancia": {
+            "coeficiente_atenuacion": -3.76e-05,
+            "r_cuadrado": 0.998,
+            "patron": "DECRECIMIENTO_EXPONENCIAL",
+            "ecuacion_atenuacion": "y = 0.00215 * e^(-0.0376x)"
+          }
+        }
+      },
+      "evaluacion_riesgo_salud": {
+        "niveles_referencia": {
+          "limite_legal_uw_cm2": 450.0,
+          "recomendacion_oms_uw_cm2": 100.0,
+          "estandar_internacional": "ICNIRP_2020",
+          "normativa_espanola": "RD_299/2016"
+        },
+        "indicadores_cumplimiento": {
+          "maximo_porcentaje_limite": 0.092,
+          "factor_seguridad_minimo": 1085.7,
+          "cumplimiento_legal": "CUMPLE",
+          "margen_seguridad": "MUY_ALTO",
+          "clase_emision": "CLASE_A"
+        },
+        "clasificacion_riesgo": {
+          "nivel_oms": "NIVEL_1_INSIGNIFICANTE",
+          "categoria_riesgo": "INSIGNIFICANTE",
+          "recomendaciones": [
+            "NINGUNA_RESTRICCION",
+            "MONITOREO_PERIODICO"
+          ],
+          "zona_exclusion_metros": 0.0
+        }
+      },
+      "analisis_cobertura": {
+        "calidad_general": "EXCELENTE",
+        "tecnologias_disponibles": {
+          "2g": true,
+          "3g": true,
+          "4g": true,
+          "5g": false
+        },
+        "indices_calidad": {
+          "indice_diversidad_tecnologica": 0.75,
+          "indice_penetracion": 0.85,
+          "indice_capacidad": 0.78,
+          "indice_conectividad": 0.92
+        },
+        "caracteristicas_cobertura": {
+          "cobertura_exterior": "EXCELENTE",
+          "cobertura_interior": "BUENA",
+          "velocidad_descarga_estimada_mbps": 150.0,
+          "latencia_estimada_ms": 25.0,
+          "capacidad_usuarios_concurrentes": 1200
+        }
+      },
+      "impacto_territorial": {
+        "poblacion_servida_estimada": 2147,
+        "area_cobertura_km2": 19.2,
+        "tipo_servicio": "RURAL_FIJO_MOVIL",
+        "infraestructuras_criticas_cubiertas": [
+          {
+            "tipo": "CENTRO_SALUD",
+            "distancia_metros": 1418,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "AYUNTAMIENTO",
+            "distancia_metros": 823,
+            "cobertura_estimada": "EXCELENTE"
+          },
+          {
+            "tipo": "ZONA_RESIDENCIAL",
+            "distancia_metros": 548,
+            "cobertura_estimada": "EXCELENTE"
+          }
+        ],
+        "municipios_servidos": [
+          "MUNICIPIO_83045"
+        ]
+      },
+      "estado_actualizacion": {
+        "ultima_actualizacion": "2024-01-15",
+        "proxima_revision": "2024-07-15",
+        "estado_operativo": "ACTIVA",
+        "confiabilidad_datos": "ALTA",
+        "frecuencia_actualizacion": "SEMESTRAL"
+      },
+      "scraping_metadata": {
+        "url_scraped": "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento=83045",
+        "status_code": 200,
+        "response_time_ms": 72,
+        "campos_extraidos": 45,
+        "campos_calculados": 22,
+        "timestamp_fin": "2025-11-06T15:18:13.288634Z"
+      }
+    }
+  ]
+}
