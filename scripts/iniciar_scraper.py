@@ -1,264 +1,160 @@
-#!/usr/bin/env python3
-"""
-SCRIPT PRINCIPAL DE INICIO - GeoScrape Sentinel
-Sistema completo de scraping resiliente para Geoportal Minetur
-"""
-
 import asyncio
-import signal
+import importlib.util
 import sys
+import os
 import time
-from pathlib import Path
+import traceback
+from rich.console import Console
+from rich.progress import (
+    Progress,
+    BarColumn,
+    TimeElapsedColumn,
+    TimeRemainingColumn,
+    TextColumn,
+    SpinnerColumn,
+)
+from rich.table import Table
+from rich.panel import Panel
+from rich.live import Live
+from rich import box
 
-# Agregar src al path para imports
-src_path = Path(__file__).parent.parent / 'src'
-sys.path.append(str(src_path))
+console = Console()
 
-try:
-    from scraper_principal import GeoportalScraper, ScraperConfig
-    from guardado_automatico import SistemaGuardado
-    from sesiones_automaticas import GestorSesiones
-    from url_manager import URLManager
-    from config_manager import ConfigManager
-    print("✅ Todos los módulos importados correctamente")
-except ImportError as e:
-    print(f"❌ Error importando módulos: {e}")
-    print("💡 Asegúrate de que todos los archivos estén en la estructura correcta")
+# ==========================
+# CONFIGURACIÓN INICIAL
+# ==========================
+SRC_PATH = os.path.join(os.path.dirname(__file__), "..", "src")
+sys.path.insert(0, SRC_PATH)
+
+SCRAPER_PATH = os.path.join(SRC_PATH, "scraper_principal.py")
+if not os.path.exists(SCRAPER_PATH):
+    console.print(f"[bold red]❌ ERROR:[/bold red] No se encontró el archivo {SCRAPER_PATH}")
     sys.exit(1)
 
 
-class IniciadorSentinel:
-    """Clase principal que orchesta todo el sistema de scraping"""
-    
-    def __init__(self):
-        self.scraper = None
-        self.guardado = None
-        self.sesiones = None
-        self.url_manager = None
-        self.config_manager = ConfigManager()
-        self.ejecucion_activa = True
-        
-    async def inicializar_sistema(self):
-        """Inicializa todos los componentes del sistema"""
-        print("\n" + "="*60)
-        print("🛡️  INICIANDO GEOSCRAPE SENTINEL")
-        print("="*60)
-        
-        # Cargar configuración
-        config_data = self.config_manager.load_config()
-        scraper_config_data = config_data.get('scraper', {})
-        
-        # Crear configuración del scraper
-        config = ScraperConfig(
-            max_workers=scraper_config_data.get('max_workers', 8),
-            batch_size=scraper_config_data.get('batch_size', 25),
-            timeout=scraper_config_data.get('timeout', 25),
-            checkpoint_interval=scraper_config_data.get('checkpoint_interval', 3),
-            max_retries=scraper_config_data.get('max_retries', 3),
-            retry_delay=scraper_config_data.get('retry_delay', 2),
-            request_delay=scraper_config_data.get('request_delay', 0.1),
-            random_delay=scraper_config_data.get('random_delay', True),
-            connection_pool_size=scraper_config_data.get('connection_pool_size', 12),
-            progress_update_interval=scraper_config_data.get('progress_update_interval', 50),
-            memory_check_interval=scraper_config_data.get('memory_check_interval', 25)
-        )
-        
-        # Inicializar componentes
-        self.scraper = GeoportalScraper(config)
-        self.guardado = SistemaGuardado()
-        self.sesiones = GestorSesiones()
-        self.url_manager = URLManager()
-        
-        print("✅ Sistema inicializado correctamente")
-        return True
-    
-    async def cargar_urls(self):
-        """Carga las URLs desde Google Drive"""
-        print("\n📥 CARGANDO URLs DESDE GOOGLE DRIVE...")
-        
-        # URL del archivo CSV en Google Drive
-        drive_url = "https://drive.google.com/file/d/1jcKPQHXLo1hbwAd2ucg60qmn66P1s8P6/view?usp=drive_link"
-        
-        urls = await self.url_manager.cargar_urls_desde_drive(drive_url)
-        
-        if not urls:
-            print("❌ No se pudieron cargar las URLs desde Google Drive")
-            return False
-        
-        print(f"✅ {len(urls)} URLs cargadas correctamente")
-        return urls
-    
-    async def verificar_checkpoints(self):
-        """Verifica y carga checkpoints existentes"""
-        print("\n🔍 BUSCANDO CHECKPOINTS ANTERIORES...")
-        
-        checkpoint_files = list(Path('data/checkpoints').glob('*.json'))
-        if checkpoint_files:
-            # Encontrar el checkpoint más reciente
-            latest_checkpoint = max(checkpoint_files, key=lambda x: x.stat().st_mtime)
-            print(f"✅ Checkpoint encontrado: {latest_checkpoint.name}")
-            print("🔄 El sistema reanudará desde el último estado guardado")
-            return True
-        else:
-            print("ℹ️  No se encontraron checkpoints anteriores")
-            print("🚀 Iniciando nueva ejecución desde cero")
-            return False
-    
-    async def iniciar_servicios_secundarios(self):
-        """Inicia los servicios de guardado y sesiones en segundo plano"""
-        print("\n🔄 INICIANDO SERVICIOS EN SEGUNDO PLANO...")
-        
-        # Iniciar sistema de guardado automático
-        await self.guardado.iniciar()
-        print("✅ Sistema de guardado automático iniciado")
-        
-        # Iniciar gestor de sesiones automáticas
-        await self.sesiones.iniciar()
-        print("✅ Gestor de sesiones automáticas iniciado")
-        
-        print("💡 Servicios secundarios activos y monitoreando")
-    
-    async def ejecutar_scraping_principal(self, urls):
-        """Ejecuta el scraping principal"""
-        print("\n🎯 INICIANDO SCRAPING PRINCIPAL...")
-        
-        # Filtrar URLs pendientes
-        urls_pendientes = self.url_manager.filtrar_urls_pendientes()
-        
-        if not urls_pendientes:
-            print("✅ No hay URLs pendientes - scraping completado!")
-            return True
-        
-        estadisticas = self.url_manager.get_estadisticas_urls()
-        print(f"📊 ESTADÍSTICAS INICIALES:")
-        print(f"   • URLs totales: {estadisticas['total_urls']}")
-        print(f"   • URLs procesadas: {estadisticas['procesadas']}")
-        print(f"   • URLs pendientes: {estadisticas['pendientes']}")
-        print(f"   • Progreso: {estadisticas['porcentaje_completado']:.1f}%")
-        
-        # Calcular tiempo estimado (asumiendo ~25 URLs/minuto)
-        tiempo_estimado_minutos = estadisticas['pendientes'] / 25
-        horas = int(tiempo_estimado_minutos // 60)
-        minutos = int(tiempo_estimado_minutos % 60)
-        
-        print(f"⏱️  TIEMPO ESTIMADO: {horas}h {minutos}m")
-        print(f"🚀 INICIANDO CON {self.scraper.config.max_workers} WORKERS...")
-        
-        # IMPORTANTE: Ejecutar scraping de forma asíncrona
+# ==========================
+# FUNCIÓN PARA CARGAR MÓDULO
+# ==========================
+def cargar_scraper():
+    spec = importlib.util.spec_from_file_location("scraper_principal", SCRAPER_PATH)
+    scraper = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(scraper)
+    return scraper
+
+
+# ==========================
+# FUNCIÓN PRINCIPAL ASÍNCRONA
+# ==========================
+async def ejecutar_scraper():
+    console.clear()
+    console.rule("[bold blue]🚀 INICIANDO SPAIN MOBILE TOWERS SCRAPER[/bold blue]")
+
+    scraper = cargar_scraper()
+
+    if not hasattr(scraper, "main"):
+        console.print("[red]❌ El archivo scraper_principal.py no contiene una función main().[/red]")
+        return
+
+    # Si el scraper tiene una función para inicializar URLs, la usamos
+    urls = []
+    if hasattr(scraper, "inicializar_urls"):
+        console.print("[cyan]📡 Cargando URLs desde geoportal_links/geoportal_links_1.txt...[/cyan]")
         try:
-            await self.scraper.ejecutar_scraping(urls_pendientes)
-            return True
+            urls = await scraper.inicializar_urls()
         except Exception as e:
-            print(f"❌ Error en scraping principal: {e}")
-            return False
-    
-    def configurar_manejo_señales(self):
-        """Configura el manejo elegante de señales (Ctrl+C)"""
-        def manejar_señal(sig, frame):
-            print(f"\n🛑 Señal {sig} recibida - Iniciando parada elegante...")
-            self.ejecucion_activa = False
-            asyncio.create_task(self.parada_elegante())
-        
-        # Registrar manejadores de señales
-        signal.signal(signal.SIGINT, manejar_señal)   # Ctrl+C
-        signal.signal(signal.SIGTERM, manejar_señal)  # Terminación
-        print("✅ Manejadores de señales configurados (Ctrl+C para parada elegante)")
-    
-    async def parada_elegante(self):
-        """Realiza una parada elegante de todo el sistema"""
-        print("\n" + "="*50)
-        print("🛑 INICIANDO PARADA ELEGANTE")
-        print("="*50)
-        
-        # Detener componentes en orden
-        if self.scraper:
-            print("⏸️  Deteniendo scraper principal...")
-            self.scraper.parada_elegante()
-        
-        if self.guardado:
-            print("💾 Deteniendo sistema de guardado...")
-            await self.guardado.detener()
-        
-        if self.sesiones:
-            print("🔒 Deteniendo gestor de sesiones...")
-            await self.sesiones.detener()
-        
-        print("✅ Parada elegante completada")
-        print("📁 El progreso ha sido guardado y puede reanudarse posteriormente")
-    
-    async def ejecutar(self):
-        """Método principal de ejecución"""
-        try:
-            print("🔄 PASO 1: Inicializando sistema...")
-            # 1. Inicializar sistema
-            if not await self.inicializar_sistema():
-                return False
-            
-            print("🔄 PASO 2: Configurando manejo de señales...")
-            # 2. Configurar manejo de señales
-            self.configurar_manejo_señales()
-            
-            print("🔄 PASO 3: Verificando checkpoints...")
-            # 3. Verificar checkpoints existentes
-            await self.verificar_checkpoints()
-            
-            print("🔄 PASO 4: Cargando URLs...")
-            # 4. Cargar URLs
-            urls = await self.cargar_urls()
-            if not urls:
-                print("❌ No se pudieron cargar las URLs")
-                return False
-            print(f"✅ URLs cargadas: {len(urls)}")
-            
-            print("🔄 PASO 5: Iniciando servicios secundarios...")
-            # 5. Iniciar servicios secundarios
-            await self.iniciar_servicios_secundarios()
-            
-            print("🔄 PASO 6: Ejecutando scraping principal...")
-            # 6. Ejecutar scraping principal
-            resultado_scraping = await self.ejecutar_scraping_principal(urls)
-            if not resultado_scraping:
-                print("❌ El scraping principal falló")
-                return False
-            
-            print("🔄 PASO 7: Parada final elegante...")
-            # 7. Parada final elegante
-            await self.parada_elegante()
-            
-            print("\n" + "="*50)
-            print("🎉 SCRAPING COMPLETADO EXITOSAMENTE!")
-            print("="*50)
-            return True
-            
-        except Exception as e:
-            print(f"\n❌ ERROR CRÍTICO: {e}")
-            import traceback
+            console.print(f"[bold red]❌ Error al cargar URLs: {e}[/bold red]")
             traceback.print_exc()
-            print("💡 Intentando parada de emergencia...")
-            await self.parada_elegante()
-            return False
-
-
-async def main():
-    """Función principal"""
-    print("🚀 INICIANDO GEOSCRAPE SENTINEL...")
-    
-    iniciador = IniciadorSentinel()
-    exito = await iniciador.ejecutar()
-    
-    if exito:
-        print("\n✅ GeoScrape Sentinel finalizado correctamente")
-        sys.exit(0)
+            return
     else:
-        print("\n❌ GeoScrape Sentinel encontró errores")
-        sys.exit(1)
+        console.print("[yellow]⚠️ No se encontró la función inicializar_urls(). Se procederá con main().[/yellow]")
+
+    total_urls = len(urls)
+    if total_urls == 0:
+        console.print("[bold red]❌ No hay URLs para procesar.[/bold red]")
+        return
+
+    # ==========================
+    # CONFIGURAR RICH PROGRESS
+    # ==========================
+    progress = Progress(
+        SpinnerColumn(),
+        TextColumn("[bold blue]{task.description}"),
+        BarColumn(),
+        TextColumn("[green]{task.completed}/{task.total}[/green]"),
+        TextColumn("• [cyan]{task.percentage:>3.1f}%[/cyan]"),
+        TimeElapsedColumn(),
+        TimeRemainingColumn(),
+        console=console,
+    )
+
+    task = progress.add_task("Scrapeando estaciones...", total=total_urls)
+
+    start_time = time.time()
+    procesadas = 0
+    errores = 0
+
+    # ==========================
+    # CALLBACK DE PROGRESO REAL
+    # ==========================
+    async def progreso_callback(evento: dict):
+        nonlocal procesadas, errores
+        if evento.get("tipo") == "procesada":
+            procesadas += 1
+            progress.update(task, completed=procesadas)
+        elif evento.get("tipo") == "error":
+            errores += 1
+            progress.console.print(
+                f"[red]⚠️ Error en {evento.get('url', 'URL desconocida')}:[/red] {evento.get('detalle', 'Sin detalles')}"
+            )
+        elif evento.get("tipo") == "mensaje":
+            progress.console.print(f"[cyan]ℹ️ {evento.get('mensaje')}[/cyan]")
+
+    # ==========================
+    # EJECUCIÓN EN TIEMPO REAL
+    # ==========================
+    with Live(console=console, refresh_per_second=5):
+        with progress:
+            try:
+                # Ejecuta el scraping con feedback en vivo
+                await scraper.main(callback=progreso_callback)
+
+                duracion = time.time() - start_time
+
+                # ==========================
+                # TABLA FINAL DE RESULTADOS
+                # ==========================
+                resumen = Table(
+                    title="📊 RESULTADOS DEL SCRAPING",
+                    show_header=True,
+                    header_style="bold magenta",
+                    box=box.ROUNDED,
+                )
+
+                resumen.add_column("Métrica", style="bold cyan")
+                resumen.add_column("Valor", style="bold yellow")
+
+                resumen.add_row("URLs Totales", str(total_urls))
+                resumen.add_row("URLs Procesadas", str(procesadas))
+                resumen.add_row("Errores", str(errores))
+                resumen.add_row("Duración", f"{duracion:.2f} s")
+                resumen.add_row(
+                    "Progreso", f"{(procesadas / total_urls) * 100:.1f}%" if total_urls > 0 else "0%"
+                )
+
+                console.print(
+                    Panel(resumen, title="[bold green]✅ EJECUCIÓN FINALIZADA[/bold green]", expand=False)
+                )
+
+            except Exception as e:
+                console.print(f"[bold red]❌ Error durante la ejecución: {str(e)}[/bold red]")
+                traceback.print_exc()
 
 
+# ==========================
+# ENTRADA PRINCIPAL
+# ==========================
 if __name__ == "__main__":
-    # Verificar que existe la estructura de directorios
-    directorios_necesarios = ['data/checkpoints', 'data/resultados', 'data/logs', 'data/backups', 'config']
-    for directorio in directorios_necesarios:
-        Path(directorio).mkdir(parents=True, exist_ok=True)
-    
-    # Ejecutar sistema
-    asyncio.run(main())
+    try:
+        asyncio.run(ejecutar_scraper())
+    except KeyboardInterrupt:
+        console.print("\n[bold yellow]⛔ Ejecución interrumpida por el usuario.[/bold yellow]")
