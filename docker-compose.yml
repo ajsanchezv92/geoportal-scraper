@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  geoportal-scraper:
+    build: .
+    container_name: geoportal-scraper
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Servicio de monitoreo opcional
+  monitor:
+    image: redis:alpine
+    container_name: redis-monitor
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
