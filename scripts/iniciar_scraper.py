@@ -14,38 +14,23 @@ from pathlib import Path
 src_path = Path(__file__).parent.parent / 'src'
 sys.path.append(str(src_path))
 
-# Verificar dependencias críticas
 try:
-    import aiohttp
-    import requests
-    DEPENDENCIAS_OK = True
+    from scraper_principal import GeoportalScraper, ScraperConfig
+    from guardado_automatico import SistemaGuardado
+    from sesiones_automaticas import GestorSesiones
+    from url_manager import URLManager
+    from config_manager import ConfigManager
+    print("✅ Todos los módulos importados correctamente")
 except ImportError as e:
-    print(f"❌ Dependencias faltantes: {e}")
-    print("💡 Ejecuta: pip install -r requirements.txt")
-    DEPENDENCIAS_OK = False
-
-if DEPENDENCIAS_OK:
-    try:
-        from scraper_principal import GeoportalScraper, ScraperConfig
-        from guardado_automatico import SistemaGuardado
-        from sesiones_automaticas import GestorSesiones
-        from url_manager import URLManager
-        from config_manager import ConfigManager
-        print("✅ Todos los módulos importados correctamente")
-    except ImportError as e:
-        print(f"❌ Error importando módulos: {e}")
-        print("💡 Asegúrate de que todos los archivos estén en la estructura correcta")
-        sys.exit(1)
+    print(f"❌ Error importando módulos: {e}")
+    print("💡 Asegúrate de que todos los archivos estén en la estructura correcta")
+    sys.exit(1)
 
 
 class IniciadorSentinel:
     """Clase principal que orchesta todo el sistema de scraping"""
     
     def __init__(self):
-        if not DEPENDENCIAS_OK:
-            print("❌ Dependencias faltantes, no se puede inicializar el sistema")
-            sys.exit(1)
-            
         self.scraper = None
         self.guardado = None
         self.sesiones = None
@@ -159,10 +144,13 @@ class IniciadorSentinel:
         print(f"⏱️  TIEMPO ESTIMADO: {horas}h {minutos}m")
         print(f"🚀 INICIANDO CON {self.scraper.config.max_workers} WORKERS...")
         
-        # Ejecutar scraping
-        await self.scraper.ejecutar_scraping(urls_pendientes)
-        
-        return True
+        # IMPORTANTE: Ejecutar scraping de forma asíncrona
+        try:
+            await self.scraper.ejecutar_scraping(urls_pendientes)
+            return True
+        except Exception as e:
+            print(f"❌ Error en scraping principal: {e}")
+            return False
     
     def configurar_manejo_señales(self):
         """Configura el manejo elegante de señales (Ctrl+C)"""
@@ -201,27 +189,39 @@ class IniciadorSentinel:
     async def ejecutar(self):
         """Método principal de ejecución"""
         try:
+            print("🔄 PASO 1: Inicializando sistema...")
             # 1. Inicializar sistema
             if not await self.inicializar_sistema():
                 return False
             
+            print("🔄 PASO 2: Configurando manejo de señales...")
             # 2. Configurar manejo de señales
             self.configurar_manejo_señales()
             
+            print("🔄 PASO 3: Verificando checkpoints...")
             # 3. Verificar checkpoints existentes
             await self.verificar_checkpoints()
             
+            print("🔄 PASO 4: Cargando URLs...")
             # 4. Cargar URLs
             urls = await self.cargar_urls()
             if not urls:
+                print("❌ No se pudieron cargar las URLs")
                 return False
+            print(f"✅ URLs cargadas: {len(urls)}")
             
+            print("🔄 PASO 5: Iniciando servicios secundarios...")
             # 5. Iniciar servicios secundarios
             await self.iniciar_servicios_secundarios()
             
+            print("🔄 PASO 6: Ejecutando scraping principal...")
             # 6. Ejecutar scraping principal
-            await self.ejecutar_scraping_principal(urls)
+            resultado_scraping = await self.ejecutar_scraping_principal(urls)
+            if not resultado_scraping:
+                print("❌ El scraping principal falló")
+                return False
             
+            print("🔄 PASO 7: Parada final elegante...")
             # 7. Parada final elegante
             await self.parada_elegante()
             
@@ -232,6 +232,8 @@ class IniciadorSentinel:
             
         except Exception as e:
             print(f"\n❌ ERROR CRÍTICO: {e}")
+            import traceback
+            traceback.print_exc()
             print("💡 Intentando parada de emergencia...")
             await self.parada_elegante()
             return False
@@ -239,10 +241,8 @@ class IniciadorSentinel:
 
 async def main():
     """Función principal"""
-    if not DEPENDENCIAS_OK:
-        print("❌ Dependencias faltantes. Instala con: pip install -r requirements.txt")
-        sys.exit(1)
-        
+    print("🚀 INICIANDO GEOSCRAPE SENTINEL...")
+    
     iniciador = IniciadorSentinel()
     exito = await iniciador.ejecutar()
     
