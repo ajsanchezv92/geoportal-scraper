@@ -8,19 +8,23 @@ import asyncio
 import signal
 import sys
 import time
-import threading
+import json
 from datetime import datetime, timedelta
+from pathlib import Path
+import logging
+
+# Rich imports
 from rich.progress import Progress, BarColumn, TimeElapsedColumn, TimeRemainingColumn, TextColumn
 from rich.console import Console
 from rich.panel import Panel
-from rich.layout import Layout
-from rich.live import Live
-from rich.text import Text
-from pathlib import Path
-import logging
-from src.scraper_principal import ejecutar_scraper, GeoportalScraper, load_config_from_file
 
 console = Console()
+
+# Añadir el directorio raíz al path para importaciones
+sys.path.append(str(Path(__file__).parent.parent))
+
+# Ahora importar después de ajustar el path
+from scraper_principal import ejecutar_scraper
 
 # Configuración de sesiones
 SESION_DURACION_HORAS = 2  # Duración de cada sesión
