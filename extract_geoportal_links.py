@@ -31,68 +31,37 @@ def download_file_from_google_drive(file_id, destination):
 
 def process_file_lines(filepath):
     """
-    Lee el archivo línea por línea, limpia duplicados por emplazamiento
-    y conserva URL + coordenadas + extras.
+    Lee el archivo línea por línea, extrae URL + coordenadas.
+    Devuelve lista de líneas formateadas y conteo.
     """
-    results = {}
+    results = []
     with_coords = 0
     without_coords = 0
-    ignored_lines = 0
+    ignored = 0
 
     with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
         lines = f.readlines()
 
     log(f"🔍 Procesando {len(lines)} líneas...", Fore.CYAN)
+
     for line in tqdm(lines, desc="Extrayendo datos", colour="green"):
-        line = line.strip()
-        if not line:
-            continue
+        parts = line.strip().split("|")
 
-        parts = line.split("|")
-        if len(parts) < 1:
-            ignored_lines += 1
-            continue
+        if len(parts) >= 3 and parts[0].startswith("https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="):
+            url = parts[0].strip()
+            lat = parts[1].strip() if parts[1] else None
+            lon = parts[2].strip() if parts[2] else None
 
-        url = parts[0].strip()
-        if not url.startswith("https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="):
-            ignored_lines += 1
-            continue
-
-        # Extrae el código del emplazamiento
-        try:
-            emplazamiento = url.split("emplazamiento=")[1].split("&")[0]
-        except IndexError:
-            ignored_lines += 1
-            continue
-
-        lat = parts[1].strip() if len(parts) > 1 else ""
-        lon = parts[2].strip() if len(parts) > 2 else ""
-        extra = "|".join(parts[3:]).strip() if len(parts) > 3 else ""
-
-        if lat and lon:
-            formatted = f"{url}|{lat}|{lon}"
-            with_coords += 1
+            if lat and lon:
+                results.append(f"{url}|{lat}|{lon}")
+                with_coords += 1
+            else:
+                results.append(url)
+                without_coords += 1
         else:
-            formatted = url
-            without_coords += 1
+            ignored += 1
 
-        if extra:
-            formatted += f"|{extra}"
-
-        # Guarda solo la primera aparición del emplazamiento
-        if emplazamiento not in results:
-            results[emplazamiento] = formatted
-
-    # ✅ Ordena numéricamente cuando se puede, alfabéticamente si no
-    def sort_key(item):
-        key = item[0]
-        try:
-            return (0, int(key))
-        except ValueError:
-            return (1, key)
-
-    results_sorted = dict(sorted(results.items(), key=sort_key))
-    return list(results_sorted.values()), with_coords, without_coords, ignored_lines
+    return sorted(set(results)), with_coords, without_coords, ignored
 
 
 def save_to_txt_splitted(results, output_dir, max_size_mb):
@@ -105,18 +74,20 @@ def save_to_txt_splitted(results, output_dir, max_size_mb):
 
     for line in tqdm(results, desc="Guardando archivos", colour="blue"):
         line_bytes = len(line.encode("utf-8")) + 1
+        # Si supera el tamaño máximo, crea un nuevo archivo
         if (current_size + line_bytes) / (1024 * 1024) > max_size_mb:
             f.close()
-            log(f"💾 Guardado: {current_file} ({current_size/1024/1024:.2f} MB)", Fore.YELLOW)
+            log(f"💾 Guardado: {current_file} ({current_size / 1024 / 1024:.2f} MB)", Fore.YELLOW)
             file_index += 1
             current_file = os.path.join(output_dir, f"geoportal_links_{file_index}.txt")
             f = open(current_file, "w", encoding="utf-8")
             current_size = 0
+
         f.write(line + "\n")
         current_size += line_bytes
 
     f.close()
-    log(f"💾 Guardado final: {current_file} ({current_size/1024/1024:.2f} MB)", Fore.YELLOW)
+    log(f"💾 Guardado final: {current_file} ({current_size / 1024 / 1024:.2f} MB)", Fore.YELLOW)
     log("✅ Proceso completado correctamente.", Fore.GREEN)
 
 
@@ -124,13 +95,13 @@ def main():
     log("🚀 Iniciando extracción de enlaces y coordenadas del Geoportal...", Fore.CYAN)
     input_file = "data_from_drive.txt"
 
-    # 1️⃣ Descargar archivo
+    # 1️⃣ Descargar archivo desde Google Drive
     download_file_from_google_drive(GOOGLE_DRIVE_FILE_ID, input_file)
 
-    # 2️⃣ Procesar contenido
-    results, with_coords, without_coords, ignored_lines = process_file_lines(input_file)
+    # 2️⃣ Procesar el contenido
+    results, with_coords, without_coords, ignored = process_file_lines(input_file)
 
-    # 3️⃣ Guardar resultados
+    # 3️⃣ Guardar resultados divididos por tamaño
     save_to_txt_splitted(results, OUTPUT_DIR, MAX_FILE_SIZE_MB)
 
     # 4️⃣ Mostrar resumen final
@@ -139,8 +110,8 @@ def main():
     log(f"🔗 Total de líneas únicas: {total}", Fore.WHITE)
     log(f"📍 Con coordenadas: {with_coords}", Fore.GREEN)
     log(f"❌ Sin coordenadas: {without_coords}", Fore.RED)
-    log(f"⚠️ Líneas ignoradas por formato inválido: {ignored_lines}", Fore.YELLOW)
-    log(f"🗂️ Archivos creados en: {OUTPUT_DIR}/", Fore.YELLOW)
+    log(f"⚠️ Líneas ignoradas por formato inválido: {ignored}", Fore.YELLOW)
+    log(f"🗂️ Archivos creados en: {OUTPUT_DIR}/", Fore.CYAN)
 
 
 if __name__ == "__main__":
