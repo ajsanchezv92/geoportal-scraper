@@ -11,8 +11,6 @@ init(autoreset=True)
 # ================================
 GOOGLE_DRIVE_FILE_ID = "1jcKPQHXLo1hbwAd2ucg60qmn66P1s8P6"
 OUTPUT_DIR = "geoportal_links"
-MAX_FILE_SIZE_MB = 25
-TOTAL_EXPECTED_LINES = 294905  # Número total de líneas esperadas
 # ================================
 
 
@@ -84,40 +82,25 @@ def process_file_lines(filepath):
     return sorted(set(results)), with_coords, without_coords, ignored, processed_lines
 
 
-def save_to_txt_splitted(results, output_dir, max_size_mb):
-    """Guarda los resultados en varios archivos si exceden el tamaño máximo."""
+def save_to_txt(results, output_dir):
+    """Guarda todos los resultados en un único archivo."""
     os.makedirs(output_dir, exist_ok=True)
-    file_index = 1
-    current_file = os.path.join(output_dir, f"geoportal_links_{file_index}.txt")
-    current_size = 0
-    f = open(current_file, "w", encoding="utf-8")
-    files_created = [current_file]
-
-    for line in tqdm(results, desc="Guardando archivos", colour="blue"):
-        line_bytes = len(line.encode("utf-8")) + 1  # +1 por el carácter de nueva línea
-        
-        # Si supera el tamaño máximo, crea un nuevo archivo
-        if (current_size + line_bytes) / (1024 * 1024) > max_size_mb:
-            f.close()
-            log(f"💾 Guardado: {current_file} ({current_size / 1024 / 1024:.2f} MB)", Fore.YELLOW)
-            file_index += 1
-            current_file = os.path.join(output_dir, f"geoportal_links_{file_index}.txt")
-            f = open(current_file, "w", encoding="utf-8")
-            files_created.append(current_file)
-            current_size = 0
-
-        f.write(line + "\n")
-        current_size += line_bytes
-
-    f.close()
-    log(f"💾 Guardado final: {current_file} ({current_size / 1024 / 1024:.2f} MB)", Fore.YELLOW)
+    output_file = os.path.join(output_dir, "geoportal_links.txt")
     
-    return files_created
+    log(f"💾 Guardando {len(results):,} resultados en {output_file}...", Fore.YELLOW)
+    
+    with open(output_file, "w", encoding="utf-8") as f:
+        for line in tqdm(results, desc="Guardando archivo", colour="blue"):
+            f.write(line + "\n")
+    
+    file_size = os.path.getsize(output_file) / (1024 * 1024)
+    log(f"💾 Archivo guardado: {output_file} ({file_size:.2f} MB)", Fore.YELLOW)
+    
+    return output_file
 
 
 def main():
     log("🚀 Iniciando extracción de enlaces y coordenadas del Geoportal...", Fore.CYAN)
-    log(f"📈 Esperando procesar aproximadamente {TOTAL_EXPECTED_LINES:,} líneas", Fore.CYAN)
     input_file = "data_from_drive.txt"
 
     try:
@@ -127,8 +110,8 @@ def main():
         # 2️⃣ Procesar el contenido
         results, with_coords, without_coords, ignored, processed_lines = process_file_lines(input_file)
 
-        # 3️⃣ Guardar resultados divididos por tamaño
-        files_created = save_to_txt_splitted(results, OUTPUT_DIR, MAX_FILE_SIZE_MB)
+        # 3️⃣ Guardar todos los resultados en un único archivo
+        output_file = save_to_txt(results, OUTPUT_DIR)
 
         # 4️⃣ Mostrar resumen final
         total_unique = with_coords + without_coords
@@ -138,7 +121,7 @@ def main():
         log(f"📍 Con coordenadas: {with_coords:,}", Fore.GREEN)
         log(f"❌ Sin coordenadas: {without_coords:,}", Fore.RED)
         log(f"⚠️ Líneas ignoradas por formato inválido: {ignored:,}", Fore.YELLOW)
-        log(f"🗂️ Archivos creados: {len(files_created)} en {OUTPUT_DIR}/", Fore.CYAN)
+        log(f"🗂️ Archivo creado: {output_file}", Fore.CYAN)
         
         # Eficiencia del proceso
         efficiency = (total_unique / processed_lines) * 100 if processed_lines > 0 else 0
