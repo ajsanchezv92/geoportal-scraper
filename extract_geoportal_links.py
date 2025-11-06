@@ -37,6 +37,7 @@ def process_file_lines(filepath):
     results = {}
     with_coords = 0
     without_coords = 0
+    ignored_lines = 0
 
     with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
         lines = f.readlines()
@@ -49,22 +50,23 @@ def process_file_lines(filepath):
 
         parts = line.split("|")
         if len(parts) < 1:
+            ignored_lines += 1
             continue
 
         url = parts[0].strip()
         if not url.startswith("https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="):
+            ignored_lines += 1
             continue
 
         # Extrae el código del emplazamiento
         try:
             emplazamiento = url.split("emplazamiento=")[1].split("&")[0]
         except IndexError:
+            ignored_lines += 1
             continue
 
         lat = parts[1].strip() if len(parts) > 1 else ""
         lon = parts[2].strip() if len(parts) > 2 else ""
-
-        # Campos extra (dirección, operador, archivo)
         extra = "|".join(parts[3:]).strip() if len(parts) > 3 else ""
 
         if lat and lon:
@@ -77,14 +79,20 @@ def process_file_lines(filepath):
         if extra:
             formatted += f"|{extra}"
 
-        # Guardamos solo la primera aparición del emplazamiento
+        # Guarda solo la primera aparición del emplazamiento
         if emplazamiento not in results:
             results[emplazamiento] = formatted
 
-    # Ordenamos por código numérico de emplazamiento
-    results_sorted = dict(sorted(results.items(), key=lambda x: int(x[0]) if x[0].isdigit() else x[0]))
+    # ✅ Ordena numéricamente cuando se puede, alfabéticamente si no
+    def sort_key(item):
+        key = item[0]
+        try:
+            return (0, int(key))
+        except ValueError:
+            return (1, key)
 
-    return list(results_sorted.values()), with_coords, without_coords
+    results_sorted = dict(sorted(results.items(), key=sort_key))
+    return list(results_sorted.values()), with_coords, without_coords, ignored_lines
 
 
 def save_to_txt_splitted(results, output_dir, max_size_mb):
@@ -120,7 +128,7 @@ def main():
     download_file_from_google_drive(GOOGLE_DRIVE_FILE_ID, input_file)
 
     # 2️⃣ Procesar contenido
-    results, with_coords, without_coords = process_file_lines(input_file)
+    results, with_coords, without_coords, ignored_lines = process_file_lines(input_file)
 
     # 3️⃣ Guardar resultados
     save_to_txt_splitted(results, OUTPUT_DIR, MAX_FILE_SIZE_MB)
@@ -131,6 +139,7 @@ def main():
     log(f"🔗 Total de líneas únicas: {total}", Fore.WHITE)
     log(f"📍 Con coordenadas: {with_coords}", Fore.GREEN)
     log(f"❌ Sin coordenadas: {without_coords}", Fore.RED)
+    log(f"⚠️ Líneas ignoradas por formato inválido: {ignored_lines}", Fore.YELLOW)
     log(f"🗂️ Archivos creados en: {OUTPUT_DIR}/", Fore.YELLOW)
 
 
