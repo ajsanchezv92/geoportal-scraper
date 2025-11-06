@@ -857,10 +857,13 @@ class GeoportalScraper:
                             m2 = re.search(r'(\d{4,10})', linea)
                             if m2:
                                 urls.append(f"https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento={m2.group(1)}")
-            # deduplicate & sort
-            urls = sorted(list(dict.fromkeys(urls)))
-            self.logger.info(f"🔍 Cargadas {len(urls)} URLs desde {path}")
-            return urls
+            
+            # ✅ CAMBIO CLAVE: ELIMINAR LA LÍNEA QUE QUITA DUPLICADOS
+            # ❌ ELIMINADO: urls = sorted(list(dict.fromkeys(urls)))
+            
+            self.logger.info(f"🔍 Cargadas {len(urls):,} URLs desde {path}")
+            return urls  # ← Devuelve TODAS las URLs sin eliminar duplicados
+            
         except Exception as e:
             self.logger.error(f"Error leyendo archivo de links: {e}")
             return []
