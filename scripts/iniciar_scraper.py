@@ -2,13 +2,6 @@
 """
 SCRIPT PRINCIPAL DE INICIO - GeoScrape Sentinel
 Sistema completo de scraping resiliente para Geoportal Minetur
-
-Características:
-✅ Inicia todos los componentes del sistema
-✅ Detecta y reanuda desde checkpoints automáticamente  
-✅ Manejo elegante de paradas (Ctrl+C)
-✅ Supervivencia a reinicios y cierres
-✅ Nunca pierde el progreso
 """
 
 import asyncio
@@ -21,23 +14,38 @@ from pathlib import Path
 src_path = Path(__file__).parent.parent / 'src'
 sys.path.append(str(src_path))
 
+# Verificar dependencias críticas
 try:
-    from scraper_principal import GeoportalScraper, ScraperConfig
-    from guardado_automatico import SistemaGuardado
-    from sesiones_automaticas import GestorSesiones
-    from url_manager import URLManager
-    from config_manager import ConfigManager
-    print("✅ Todos los módulos importados correctamente")
+    import aiohttp
+    import requests
+    DEPENDENCIAS_OK = True
 except ImportError as e:
-    print(f"❌ Error importando módulos: {e}")
-    print("💡 Asegúrate de que todos los archivos estén en la estructura correcta")
-    sys.exit(1)
+    print(f"❌ Dependencias faltantes: {e}")
+    print("💡 Ejecuta: pip install -r requirements.txt")
+    DEPENDENCIAS_OK = False
+
+if DEPENDENCIAS_OK:
+    try:
+        from scraper_principal import GeoportalScraper, ScraperConfig
+        from guardado_automatico import SistemaGuardado
+        from sesiones_automaticas import GestorSesiones
+        from url_manager import URLManager
+        from config_manager import ConfigManager
+        print("✅ Todos los módulos importados correctamente")
+    except ImportError as e:
+        print(f"❌ Error importando módulos: {e}")
+        print("💡 Asegúrate de que todos los archivos estén en la estructura correcta")
+        sys.exit(1)
 
 
 class IniciadorSentinel:
     """Clase principal que orchesta todo el sistema de scraping"""
     
     def __init__(self):
+        if not DEPENDENCIAS_OK:
+            print("❌ Dependencias faltantes, no se puede inicializar el sistema")
+            sys.exit(1)
+            
         self.scraper = None
         self.guardado = None
         self.sesiones = None
@@ -231,6 +239,10 @@ class IniciadorSentinel:
 
 async def main():
     """Función principal"""
+    if not DEPENDENCIAS_OK:
+        print("❌ Dependencias faltantes. Instala con: pip install -r requirements.txt")
+        sys.exit(1)
+        
     iniciador = IniciadorSentinel()
     exito = await iniciador.ejecutar()
     
