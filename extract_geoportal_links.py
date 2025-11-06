@@ -1,10 +1,9 @@
-import re
 import os
 import requests
 from tqdm import tqdm
 from colorama import Fore, Style, init
 
-# Inicializa colores para consola (Windows y Linux)
+# Inicializa color en terminal
 init(autoreset=True)
 
 # ================================
@@ -17,12 +16,11 @@ MAX_FILE_SIZE_MB = 25
 
 
 def log(msg, color=Fore.WHITE):
-    """Imprime mensajes con color y formato uniforme."""
     print(f"{color}{msg}{Style.RESET_ALL}")
 
 
 def download_file_from_google_drive(file_id, destination):
-    """Descarga un archivo público de Google Drive."""
+    """Descarga un archivo público desde Google Drive."""
     url = f"https://drive.google.com/uc?export=download&id={file_id}"
     response = requests.get(url)
     response.raise_for_status()
@@ -31,30 +29,33 @@ def download_file_from_google_drive(file_id, destination):
     log(f"✅ Archivo descargado correctamente: {destination}", Fore.GREEN)
 
 
-def extract_links_and_coords(text):
+def process_file_lines(filepath):
     """
-    Extrae URLs del Geoportal y posibles coordenadas (lat, lon).
-    Las coordenadas se detectan con expresiones regulares comunes.
+    Lee el archivo línea por línea, extrae URL + coordenadas.
+    Devuelve lista de líneas formateadas y conteo.
     """
-    pattern_url = r"https://geoportal\.minetur\.gob\.es/VCTEL/detalleEstacion\.do\?emplazamiento=[\w\d]+"
-    urls = re.findall(pattern_url, text)
-
     results = []
     with_coords = 0
     without_coords = 0
 
-    log(f"🔍 Extrayendo enlaces y coordenadas ({len(urls)} encontrados inicialmente)...", Fore.CYAN)
+    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+        lines = f.readlines()
 
-    for url in tqdm(urls, desc="Procesando enlaces", colour="green"):
-        # Intentar buscar latitud/longitud en el texto próximo
-        lat_match = re.search(r"lat(?:itud)?[:=]?\s*(-?\d+\.\d+)", url)
-        lon_match = re.search(r"lon(?:gitud)?[:=]?\s*(-?\d+\.\d+)", url)
-        if lat_match and lon_match:
-            results.append(f"{url} | {lat_match.group(1)}, {lon_match.group(1)}")
-            with_coords += 1
-        else:
-            results.append(url)
-            without_coords += 1
+    log(f"🔍 Procesando {len(lines)} líneas...", Fore.CYAN)
+    for line in tqdm(lines, desc="Extrayendo datos", colour="green"):
+        parts = line.strip().split("|")
+
+        if len(parts) >= 3 and parts[0].startswith("https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="):
+            url = parts[0].strip()
+            lat = parts[1].strip() if parts[1] else None
+            lon = parts[2].strip() if parts[2] else None
+
+            if lat and lon:
+                results.append(f"{url} | {lat}, {lon}")
+                with_coords += 1
+            else:
+                results.append(url)
+                without_coords += 1
 
     return sorted(set(results)), with_coords, without_coords
 
@@ -68,7 +69,7 @@ def save_to_txt_splitted(results, output_dir, max_size_mb):
     f = open(current_file, "w", encoding="utf-8")
 
     for line in tqdm(results, desc="Guardando archivos", colour="blue"):
-        line_bytes = len(line.encode("utf-8")) + 1  # +1 por salto de línea
+        line_bytes = len(line.encode("utf-8")) + 1
         if (current_size + line_bytes) / (1024 * 1024) > max_size_mb:
             f.close()
             log(f"💾 Guardado: {current_file} ({current_size/1024/1024:.2f} MB)", Fore.YELLOW)
@@ -85,26 +86,22 @@ def save_to_txt_splitted(results, output_dir, max_size_mb):
 
 
 def main():
-    log("🚀 Iniciando extracción de enlaces del Geoportal...", Fore.CYAN)
+    log("🚀 Iniciando extracción de enlaces y coordenadas del Geoportal...", Fore.CYAN)
     input_file = "data_from_drive.txt"
 
-    # 1️⃣ Descargar el archivo
+    # 1️⃣ Descargar archivo
     download_file_from_google_drive(GOOGLE_DRIVE_FILE_ID, input_file)
 
-    # 2️⃣ Leer contenido
-    with open(input_file, "r", encoding="utf-8", errors="ignore") as f:
-        text = f.read()
+    # 2️⃣ Procesar contenido
+    results, with_coords, without_coords = process_file_lines(input_file)
 
-    # 3️⃣ Extraer URLs y coordenadas
-    results, with_coords, without_coords = extract_links_and_coords(text)
-
-    # 4️⃣ Guardar resultados
+    # 3️⃣ Guardar resultados
     save_to_txt_splitted(results, OUTPUT_DIR, MAX_FILE_SIZE_MB)
 
-    # 5️⃣ Mostrar estadísticas finales
+    # 4️⃣ Mostrar resumen final
     total = with_coords + without_coords
     log("\n📊 RESUMEN FINAL", Fore.MAGENTA)
-    log(f"🔗 Total de enlaces únicos: {total}", Fore.WHITE)
+    log(f"🔗 Total de líneas únicas: {total}", Fore.WHITE)
     log(f"📍 Con coordenadas: {with_coords}", Fore.GREEN)
     log(f"❌ Sin coordenadas: {without_coords}", Fore.RED)
     log(f"🗂️ Archivos creados en: {OUTPUT_DIR}/", Fore.YELLOW)
