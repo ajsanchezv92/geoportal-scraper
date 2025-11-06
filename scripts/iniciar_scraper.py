@@ -95,7 +95,7 @@ class IniciadorSentinel:
         print(f"✅ {len(urls)} URLs cargadas correctamente")
         return urls
     
-    async verificar_checkpoints(self):
+    async def verificar_checkpoints(self):
         """Verifica y carga checkpoints existentes"""
         print("\n🔍 BUSCANDO CHECKPOINTS ANTERIORES...")
         
