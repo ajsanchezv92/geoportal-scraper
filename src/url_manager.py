@@ -15,60 +15,188 @@ class URLManager:
         self._cargar_urls_procesadas()
     
     async def cargar_urls_desde_drive(self, drive_url: str) -> List[str]:
-        """Carga URLs desde Google Drive - VERSIÓN SIMPLIFICADA PARA PRUEBAS"""
-        self.logger.info(f"📥 Cargando URLs desde: {drive_url}")
+        """Carga TODAS las URLs REALES desde Google Drive"""
+        self.logger.info(f"📥 Cargando URLs REALES desde: {drive_url}")
         
         try:
-            # SIMULACIÓN: Generar URLs de prueba basadas en el patrón que mostraste
-            urls = self._generar_urls_prueba(100)
-            self.urls_pendientes = urls
-            self.logger.info(f"✅ {len(urls)} URLs de prueba generadas")
+            # Descargar el contenido real de Google Drive
+            start_time = time.time()
+            contenido = await self._descargar_contenido_drive(drive_url)
+            download_time = time.time() - start_time
             
-            # Mostrar ejemplos
-            self.logger.info("🔍 Ejemplo de URLs generadas:")
-            for i, url in enumerate(urls[:5]):
-                self.logger.info(f"   {i+1}. {url}")
+            if not contenido:
+                self.logger.error("❌ No se pudo descargar el contenido de Google Drive")
+                return []
+            
+            self.logger.info(f"✅ Contenido descargado en {download_time:.2f}s: {len(contenido)} caracteres")
+            
+            # Extraer TODAS las URLs del contenido
+            start_extract = time.time()
+            urls = self._extraer_todas_las_urls_reales(contenido)
+            extract_time = time.time() - start_extract
+            
+            if not urls:
+                self.logger.error("❌ No se encontraron URLs en el documento")
+                return []
+                
+            self.urls_pendientes = urls
+            self.logger.info(f"✅ {len(urls)} URLs REALES extraídas en {extract_time:.2f}s")
+            
+            # Mostrar estadísticas
+            self._mostrar_estadisticas_urls(urls)
             
             return urls
             
         except Exception as e:
-            self.logger.error(f"❌ Error: {str(e)}")
+            self.logger.error(f"❌ Error cargando URLs desde Google Drive: {str(e)}")
             return []
     
-    def _generar_urls_prueba(self, cantidad: int) -> List[str]:
-        """Genera URLs de prueba basadas en los ejemplos reales"""
-        base_url = "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="
-        
-        # Usar los IDs reales que me mostraste
-        ids_reales = [
-            "77689", "3100602", "0700022", "0700571", "0700158",
-            "1200010", "1200011", "1200012", "0800150", "0800151"
+    async def _descargar_contenido_drive(self, drive_url: str) -> str:
+        """Descarga el contenido REAL del archivo de Google Drive"""
+        try:
+            # Convertir la URL de visualización a URL de descarga directa
+            file_id = self._extraer_file_id(drive_url)
+            if not file_id:
+                self.logger.error("❌ No se pudo extraer el ID del archivo de Google Drive")
+                return ""
+            
+            # URL de descarga directa
+            download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+            self.logger.info(f"🔗 Descargando de: {download_url}")
+            
+            timeout = aiohttp.ClientTimeout(total=60)  # Timeout más largo para archivo grande
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.get(download_url) as response:
+                    if response.status == 200:
+                        contenido = await response.text()
+                        self.logger.info(f"📄 Archivo descargado: {len(contenido)} caracteres")
+                        return contenido
+                    else:
+                        self.logger.error(f"❌ Error HTTP {response.status} al descargar")
+                        return ""
+                        
+        except asyncio.TimeoutError:
+            self.logger.error("❌ Timeout al descargar de Google Drive")
+            return ""
+        except Exception as e:
+            self.logger.error(f"❌ Error descargando de Google Drive: {str(e)}")
+            return ""
+    
+    def _extraer_file_id(self, drive_url: str) -> str:
+        """Extrae el file ID de la URL de Google Drive"""
+        patrones = [
+            r'/file/d/([a-zA-Z0-9_-]+)',
+            r'id=([a-zA-Z0-9_-]+)',
+            r'([a-zA-Z0-9_-]{25,})'
         ]
         
-        # Generar más IDs variados
-        urls = []
+        for patron in patrones:
+            match = re.search(patron, drive_url)
+            if match:
+                return match.group(1)
         
-        # Agregar IDs reales
-        for emp_id in ids_reales:
-            urls.append(base_url + emp_id)
+        return ""
+    
+    def _extraer_todas_las_urls_reales(self, contenido: str) -> List[str]:
+        """Extrae TODAS las URLs REALES del contenido descargado"""
+        self.logger.info("🔍 Extrayendo TODAS las URLs reales...")
         
-        # Generar IDs adicionales con diferentes patrones
-        for i in range(len(ids_reales), cantidad):
-            # Diferentes patrones como en los ejemplos reales
-            if i % 5 == 0:
-                emp_id = f"77{i:03d}"  # Tipo 77689
-            elif i % 5 == 1:
-                emp_id = f"31{i:04d}"  # Tipo 3100602
-            elif i % 5 == 2:
-                emp_id = f"07{i:05d}"  # Tipo 0700022
-            elif i % 5 == 3:
-                emp_id = f"12{i:04d}"  # Tipo 1200010
-            else:
-                emp_id = f"08{i:04d}"  # Tipo 0800150
+        urls = set()
+        base_url = "https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento="
+        
+        # MÉTODO 1: Buscar patrones de emplazamiento
+        self.logger.info("🔍 Buscando patrones emplazamiento=...")
+        patron_emplazamiento = r'emplazamiento=(\d{1,10})'
+        matches_emplazamiento = re.findall(patron_emplazamiento, contenido)
+        
+        for emp_id in matches_emplazamiento:
+            url_completa = base_url + emp_id
+            urls.add(url_completa)
+        
+        self.logger.info(f"📊 Por emplazamiento=: {len(matches_emplazamiento)} encontrados")
+        
+        # MÉTODO 2: Buscar URLs completas
+        self.logger.info("🔍 Buscando URLs completas...")
+        patron_url_completa = r'https://geoportal\.minetur\.gob\.es/VCTEL/detalleEstacion\.do\?emplazamiento=\d{1,10}'
+        matches_urls = re.findall(patron_url_completa, contenido)
+        
+        for url in matches_urls:
+            urls.add(url)
+        
+        self.logger.info(f"📊 URLs completas: {len(matches_urls)} encontradas")
+        
+        # MÉTODO 3: Buscar en formato específico con pipes |
+        self.logger.info("🔍 Buscando formato con pipes |...")
+        lineas = contenido.split('\n')
+        contador_lineas = 0
+        
+        for i, linea in enumerate(lineas):
+            # Buscar el patrón: emplazamiento=XXXXX| (con | después del número)
+            match = re.search(r'emplazamiento=(\d{1,10})\|', linea)
+            if match:
+                emp_id = match.group(1)
+                url_completa = base_url + emp_id
+                urls.add(url_completa)
+                contador_lineas += 1
             
-            urls.append(base_url + emp_id)
+            # Mostrar progreso cada 50,000 líneas
+            if i > 0 and i % 50000 == 0:
+                self.logger.info(f"📊 Procesadas {i} líneas...")
         
-        return urls
+        self.logger.info(f"📊 En formato pipe: {contador_lineas} encontradas")
+        
+        # Convertir a lista ordenada
+        urls_lista = sorted(list(urls))
+        
+        self.logger.info(f"🎯 EXTRACCIÓN COMPLETADA: {len(urls_lista)} URLs únicas encontradas")
+        
+        return urls_lista
+    
+    def _mostrar_estadisticas_urls(self, urls: List[str]):
+        """Muestra estadísticas detalladas de las URLs encontradas"""
+        if not urls:
+            return
+        
+        # Analizar patrones de IDs
+        ids = []
+        for url in urls:
+            match = re.search(r'emplazamiento=(\d+)', url)
+            if match:
+                ids.append(match.group(1))
+        
+        # Estadísticas de longitud de IDs
+        longitudes = {}
+        for emp_id in ids:
+            longitud = len(emp_id)
+            longitudes[longitud] = longitudes.get(longitud, 0) + 1
+        
+        self.logger.info("📊 ESTADÍSTICAS DETALLADAS:")
+        self.logger.info(f"   • Total URLs únicas: {len(urls)}")
+        self.logger.info(f"   • Rango de IDs: {min(ids)} - {max(ids)}")
+        self.logger.info(f"   • Distribución por longitud:")
+        for longitud, count in sorted(longitudes.items()):
+            self.logger.info(f"     - {longitud} dígitos: {count} URLs")
+        
+        # Mostrar ejemplos de diferentes patrones
+        self.logger.info("🔍 Ejemplos de URLs encontradas:")
+        ejemplos = []
+        patrones_vistos = set()
+        
+        for url in urls:
+            match = re.search(r'emplazamiento=(\d+)', url)
+            if match:
+                emp_id = match.group(1)
+                patron = emp_id[:2]  # Primeros 2 dígitos como patrón
+                
+                if patron not in patrones_vistos and len(ejemplos) < 10:
+                    ejemplos.append(url)
+                    patrones_vistos.add(patron)
+        
+        for i, ejemplo in enumerate(ejemplos[:5]):
+            self.logger.info(f"   {i+1}. {ejemplo}")
+        
+        if len(urls) > 5:
+            self.logger.info(f"   ... y {len(urls) - 5} más")
     
     def _cargar_urls_procesadas(self):
         """Carga URLs ya procesadas desde checkpoints"""
@@ -86,7 +214,7 @@ class URLManager:
                     self.logger.warning(f"⚠️  Error leyendo checkpoint: {e}")
             
             self.urls_procesadas = urls_procesadas
-            self.logger.info(f"📊 {len(urls_procesadas)} URLs procesadas cargadas")
+            self.logger.info(f"📊 {len(urls_procesadas)} URLs procesadas cargadas desde checkpoints")
             
         except Exception as e:
             self.logger.warning(f"No se pudieron cargar URLs procesadas: {str(e)}")
@@ -95,7 +223,7 @@ class URLManager:
     def filtrar_urls_pendientes(self) -> List[str]:
         """Filtra URLs pendientes de procesar"""
         pendientes = [url for url in self.urls_pendientes if url not in self.urls_procesadas]
-        self.logger.info(f"🎯 {len(pendientes)} URLs pendientes de procesar")
+        self.logger.info(f"🎯 {len(pendientes)} URLs pendientes de procesar (de {len(self.urls_pendientes)} totales)")
         return pendientes
     
     def get_estadisticas_urls(self) -> dict:
