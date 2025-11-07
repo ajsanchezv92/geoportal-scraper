@@ -7,6 +7,7 @@ Scraper principal actualizado
 - Guarda resultados en archivos con tamaño máximo configurable (por defecto 25 MB)
 - Mantiene checkpoints y backups
 - No hace push automático a GitHub (actualizar_github.py manual)
+- USA COORDENADAS REALES del archivo geoportal_links_1.txt
 """
 import asyncio
 import aiohttp
@@ -91,6 +92,8 @@ class GeoportalScraper:
         self.setup_directories()
         # contador interno para guardar lotes incrementales con control de tamaño
         self._lote_guardado_counter = 1
+        # ✅ NUEVO: Diccionario para almacenar coordenadas por URL
+        self.coordenadas_por_url = {}
 
     def setup_logging(self):
         Path('data/logs').mkdir(parents=True, exist_ok=True)
@@ -146,7 +149,15 @@ class GeoportalScraper:
                 if response.status == 200:
                     html = await response.text()
                     response_time = int((time.time() - start_time) * 1000)
-                    datos = await self.extraer_datos_estacion_formato_correcto(html, url, response_time)
+                    
+                    # ✅ OBTENER COORDENADAS GUARDADAS para esta URL
+                    coordenadas = self.coordenadas_por_url.get(url, {})
+                    latitud = coordenadas.get('latitud')
+                    longitud = coordenadas.get('longitud')
+                    
+                    datos = await self.extraer_datos_estacion_formato_correcto(
+                        html, url, response_time, latitud, longitud
+                    )
                     if datos and self.tiene_datos_validos(datos):
                         self.stats['urls_exitosas'] += 1
                         self.stats['emplazamientos_validos'] += 1
@@ -167,14 +178,9 @@ class GeoportalScraper:
         """Verifica que los datos extraídos sean realmente válidos"""
         return bool(datos.get('informacion_geografica', {}).get('direccion', {}).get('via'))
 
-    # ----------------- Extracción (igual que antes) -----------------
-    # (Conservadas todas las funciones de extracción que ya tenías: extraer_datos_estacion_formato_correcto,
-    # _extraer_datos_basicos, _generar_metadata, _extraer_informacion_geografica, _determinar_tipo_zona, etc.)
-    # Para no repetir, pego las funciones tal como estaban (sin cambios lógicos) — si quieres que las
-    # recorte o modifique explícitamente dímelo, pero las mantengo completas aquí.
-
-    async def extraer_datos_estacion_formato_correcto(self, html: str, url: str, response_time: int) -> Optional[Dict]:
-        """Extrae datos en el FORMATO EXACTO especificado"""
+    async def extraer_datos_estacion_formato_correcto(self, html: str, url: str, response_time: int, 
+                                                     latitud_real: float = None, longitud_real: float = None) -> Optional[Dict]:
+        """Extrae datos en el FORMATO EXACTO especificado usando coordenadas reales"""
         soup = BeautifulSoup(html, 'html.parser')
         estacion_id = self.extraer_estacion_id(url)
 
@@ -190,7 +196,9 @@ class GeoportalScraper:
                 "estacion_id": estacion_id,
                 "url_oficial": url,
                 "metadata": self._generar_metadata(),
-                "informacion_geografica": self._extraer_informacion_geografica(soup, estacion_id),
+                "informacion_geografica": self._extraer_informacion_geografica(
+                    soup, estacion_id, latitud_real, longitud_real
+                ),
                 "caracteristicas_estacion": self._extraer_caracteristicas_estacion(soup),
                 "infraestructura_tecnologica": self._extraer_infraestructura_tecnologica(soup),
                 "mediciones_emisiones": self._extraer_mediciones_emisiones(soup),
@@ -240,7 +248,8 @@ class GeoportalScraper:
             "hash_verificacion": f"hash_{int(time.time())}"
         }
 
-    def _extraer_informacion_geografica(self, soup, estacion_id: str) -> Dict:
+    def _extraer_informacion_geografica(self, soup, estacion_id: str, 
+                                       latitud_real: float = None, longitud_real: float = None) -> Dict:
         direccion_completa = ""
         municipio = ""
         provincia = ""
@@ -262,8 +271,17 @@ class GeoportalScraper:
         except:
             pass
 
-        latitud = 40.31138889 + random.uniform(-1, 1)
-        longitud = -0.28055556 + random.uniform(-1, 1)
+        # ✅ USAR COORDENADAS REALES si están disponibles, sino generar aleatorias
+        if latitud_real is not None and longitud_real is not None:
+            latitud = latitud_real
+            longitud = longitud_real
+            precision = "ALTA"
+            fuente_coordenadas = "ARCHIVO_ORIGINAL"
+        else:
+            latitud = 40.31138889 + random.uniform(-1, 1)
+            longitud = -0.28055556 + random.uniform(-1, 1)
+            precision = "MEDIA"
+            fuente_coordenadas = "GENERADO"
 
         return {
             "direccion": {
@@ -278,7 +296,8 @@ class GeoportalScraper:
                 "longitud": round(longitud, 8),
                 "altitud_metros": round(random.uniform(0, 1000), 1),
                 "sistema_referencia": "ETRS89",
-                "precision_ubicacion": "ALTA",
+                "precision_ubicacion": precision,
+                "fuente_coordenadas": fuente_coordenadas,
                 "geo_hash": f"hash_{estacion_id}"
             },
             "contexto_geografico": {
@@ -292,7 +311,7 @@ class GeoportalScraper:
     def _determinar_tipo_zona(self, direccion: str) -> str:
         if not direccion:
             return "DESCONOCIDO"
-        direccion_upper = direccion.upper()
+        direccion_upper = direccion.UPPer()
         if any(palabra in direccion_upper for palabra in ['POLÍGONO', 'POLIGONO', 'INDUSTRIAL']):
             return "INDUSTRIAL"
         elif any(palabra in direccion_upper for palabra in ['CENTRO', 'PLAZA', 'AYUNTAMIENTO']):
@@ -828,7 +847,7 @@ class GeoportalScraper:
     # ----------------- Utilidades de carga de URLs -----------------
 
     def cargar_urls_desde_archivo_local(self, path: Path = GEOPORTAL_LINKS_PATH) -> List[str]:
-        """Lee el archivo geoportal_links_1.txt y extrae URLs válidas"""
+        """Lee el archivo geoportal_links_1.txt y extrae URLs + COORDENADAS"""
         urls = []
         if not path.exists():
             self.logger.error(f"No existe el archivo de links: {path}")
@@ -839,30 +858,31 @@ class GeoportalScraper:
                     linea = raw.strip()
                     if not linea or linea.startswith('#'):
                         continue
-                    # Aceptamos líneas que sean URLs completas o solo IDs '12345|lat|lon' o 'emplazamiento=12345'
-                    # Si es una URL completa, usarla; si hay un número, construir URL base
-                    if linea.startswith('http'):
-                        # extraer posible url completa dentro de la línea
-                        m = re.search(r'https?://\S+', linea)
-                        if m:
-                            urls.append(m.group(0))
-                        else:
-                            urls.append(linea)
-                    else:
-                        # buscar emplazamiento=NNNN o solo dígitos
-                        m = re.search(r'emplazamiento=(\d{1,10})', linea)
-                        if m:
-                            urls.append(f"https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento={m.group(1)}")
-                        else:
-                            m2 = re.search(r'(\d{4,10})', linea)
-                            if m2:
-                                urls.append(f"https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento={m2.group(1)}")
-            
-            # ✅ CAMBIO CLAVE: ELIMINAR LA LÍNEA QUE QUITA DUPLICADOS
-            # ❌ ELIMINADO: urls = sorted(list(dict.fromkeys(urls)))
+                    
+                    # ✅ CORRECCIÓN: Extraer URL Y COORDENADAS
+                    if '|' in linea:
+                        partes = linea.split('|')
+                        if len(partes) >= 3:
+                            url_parte = partes[0].strip()
+                            if url_parte.startswith('https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento='):
+                                try:
+                                    latitud = float(partes[1].strip())
+                                    longitud = float(partes[2].strip())
+                                    urls.append(url_parte)
+                                    # ✅ GUARDAR COORDENADAS PARA ESTA URL
+                                    self.coordenadas_por_url[url_parte] = {
+                                        'latitud': latitud,
+                                        'longitud': longitud
+                                    }
+                                except (ValueError, IndexError):
+                                    # Si hay error en coordenadas, usar solo la URL
+                                    urls.append(url_parte)
+                    elif linea.startswith('https://geoportal.minetur.gob.es/VCTEL/detalleEstacion.do?emplazamiento='):
+                        urls.append(linea)
             
             self.logger.info(f"🔍 Cargadas {len(urls):,} URLs desde {path}")
-            return urls  # ← Devuelve TODAS las URLs sin eliminar duplicados
+            self.logger.info(f"📍 Coordenadas cargadas para {len(self.coordenadas_por_url):,} estaciones")
+            return urls
             
         except Exception as e:
             self.logger.error(f"Error leyendo archivo de links: {e}")
