@@ -311,7 +311,7 @@ class GeoportalScraper:
     def _determinar_tipo_zona(self, direccion: str) -> str:
         if not direccion:
             return "DESCONOCIDO"
-        direccion_upper = direccion.UPPer()
+        direccion_upper = direccion.Upper()
         if any(palabra in direccion_upper for palabra in ['POLÍGONO', 'POLIGONO', 'INDUSTRIAL']):
             return "INDUSTRIAL"
         elif any(palabra in direccion_upper for palabra in ['CENTRO', 'PLAZA', 'AYUNTAMIENTO']):
