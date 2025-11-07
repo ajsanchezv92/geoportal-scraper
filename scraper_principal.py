@@ -219,7 +219,7 @@ class GeoportalScraper:
     def _extraer_datos_basicos(self, soup, estacion_id: str, url: str) -> Dict:
         datos = {}
         try:
-            h2_localizacion = soup.find('h2', string='LOCALIZACIÓN')
+            h2_localizacion = soup.find('h2', string=re.compile('LOCALIZACIÓ', re.IGNORECASE))
             if h2_localizacion:
                 tabla_localizacion = h2_localizacion.find_next('table')
                 if tabla_localizacion:
@@ -255,21 +255,24 @@ class GeoportalScraper:
         provincia = ""
 
         try:
-            h2_localizacion = soup.find('h2', string='LOCALIZACIÓN')
-            if h2_localizacion:
-                tabla = h2_localizacion.find_next('table')
-                if tabla:
-                    celdas = tabla.find_all('td')
-                    if len(celdas) >= 2:
-                        direccion_completa = celdas[1].get_text(strip=True)
-                        if '. ' in direccion_completa:
-                            partes = direccion_completa.split('. ')
-                            if len(partes) >= 2:
-                                municipio = partes[1].split(',')[0].strip() if ',' in partes[1] else partes[1].strip()
-                                if ',' in direccion_completa:
-                                    provincia = direccion_completa.split(', ')[-1].strip()
-        except:
-            pass
+            # ✅ MÚLTIPLES ESTRATEGIAS para encontrar la dirección
+            estrategias = [
+                lambda: self._buscar_direccion_por_tabla_localizacion(soup),
+                lambda: self._buscar_direccion_por_patron(soup),
+                lambda: self._buscar_direccion_en_todas_tablas(soup)
+            ]
+            
+            for estrategia in estrategias:
+                resultado = estrategia()
+                if resultado and resultado['direccion']:
+                    direccion_completa = resultado['direccion']
+                    municipio = resultado.get('municipio', '')
+                    provincia = resultado.get('provincia', '')
+                    self.logger.info(f"📍 Dirección encontrada: {direccion_completa}")
+                    break
+                    
+        except Exception as e:
+            self.logger.warning(f"Error extrayendo información geográfica: {e}")
 
         # ✅ USAR COORDENADAS REALES si están disponibles, sino generar aleatorias
         if latitud_real is not None and longitud_real is not None:
@@ -308,10 +311,98 @@ class GeoportalScraper:
             }
         }
 
+    def _buscar_direccion_por_tabla_localizacion(self, soup):
+        """Busca dirección en tabla después de LOCALIZACIÓN - ESTRATEGIA PRINCIPAL"""
+        try:
+            h2_localizacion = soup.find('h2', string=re.compile('LOCALIZACIÓ', re.IGNORECASE))
+            if h2_localizacion:
+                tabla = h2_localizacion.find_next('table')
+                if tabla:
+                    # Buscar todas las filas de la tabla
+                    filas = tabla.find_all('tr')
+                    for fila in filas:
+                        celdas = fila.find_all('td')
+                        if len(celdas) >= 2:
+                            texto_celda1 = celdas[0].get_text(strip=True)
+                            texto_celda2 = celdas[1].get_text(strip=True)
+                            
+                            # Si la primera celda contiene "Dirección" o similar
+                            if any(palabra in texto_celda1.upper() for palabra in ['DIRECCI', 'DIRECCION', 'UBICACION']):
+                                direccion_completa = texto_celda2
+                                return self._parsear_direccion_completa(direccion_completa)
+                            
+                            # Si la segunda celda contiene una dirección con el formato esperado
+                            if '. ' in texto_celda2 and any(palabra in texto_celda2 for palabra in [', ', 'POLÍGONO', 'CALLE', 'AVENIDA', 'PLAZA']):
+                                direccion_completa = texto_celda2
+                                return self._parsear_direccion_completa(direccion_completa)
+        except Exception as e:
+            self.logger.warning(f"Error en búsqueda por tabla localización: {e}")
+        return None
+
+    def _buscar_direccion_por_patron(self, soup):
+        """Busca dirección por patrones en todo el HTML"""
+        try:
+            # Buscar texto que coincida con el patrón de dirección típico
+            patrones = [
+                r'[A-Z\s]+\.\s*[A-Z][^,]+\.[^,]+,\s*[A-Z\s]+',
+                r'[A-Z\s]+\s+\d+[A-Z]?\.\s*[^,]+\.[^,]+,\s*[A-Z\s]+',
+                r'POL[IÍ]GONO\s+\d+\s+PARCELA\s+\d+\.\s*[^,]+\.[^,]+,\s*[A-Z\s]+'
+            ]
+            
+            texto_completo = soup.get_text()
+            for patron in patrones:
+                matches = re.findall(patron, texto_completo)
+                for match in matches:
+                    if any(palabra in match.upper() for palabra in ['POLÍGONO', 'CALLE', 'AVENIDA', 'PLAZA', 'CARRETERA']):
+                        return self._parsear_direccion_completa(match.strip())
+        except Exception as e:
+            self.logger.warning(f"Error en búsqueda por patrón: {e}")
+        return None
+
+    def _buscar_direccion_en_todas_tablas(self, soup):
+        """Busca dirección en todas las tablas de la página"""
+        try:
+            tablas = soup.find_all('table')
+            for tabla in tablas:
+                filas = tabla.find_all('tr')
+                for fila in filas:
+                    celdas = fila.find_all('td')
+                    for celda in celdas:
+                        texto = celda.get_text(strip=True)
+                        # Si el texto parece una dirección completa
+                        if '. ' in texto and any(palabra in texto.upper() for palabra in [', ', 'POLÍGONO', 'CALLE', 'AVENIDA']):
+                            return self._parsear_direccion_completa(texto)
+        except Exception as e:
+            self.logger.warning(f"Error en búsqueda en todas las tablas: {e}")
+        return None
+
+    def _parsear_direccion_completa(self, direccion_completa):
+        """Parsea la dirección completa para extraer municipio y provincia"""
+        if not direccion_completa:
+            return None
+            
+        resultado = {'direccion': direccion_completa}
+        
+        # Ejemplo: "VP POLÍGONO 5 PARCELA 29, S/N. ESCORCA, ILLES BALEARS"
+        if '. ' in direccion_completa:
+            partes = direccion_completa.split('. ')
+            if len(partes) >= 2:
+                # La parte después del primer punto contiene municipio y provincia
+                municipio_provincia = partes[1].strip()
+                if ', ' in municipio_provincia:
+                    municipio_parts = municipio_provincia.split(', ')
+                    resultado['municipio'] = municipio_parts[0].strip()
+                    resultado['provincia'] = municipio_parts[1].strip() if len(municipio_parts) > 1 else ""
+                else:
+                    # Si no hay coma, asumimos que es solo el municipio
+                    resultado['municipio'] = municipio_provincia
+        
+        return resultado
+
     def _determinar_tipo_zona(self, direccion: str) -> str:
         if not direccion:
             return "DESCONOCIDO"
-        direccion_upper = direccion.upper()  # ✅ CORREGIDO: upper() en minúscula
+        direccion_upper = direccion.upper()
         if any(palabra in direccion_upper for palabra in ['POLÍGONO', 'POLIGONO', 'INDUSTRIAL']):
             return "INDUSTRIAL"
         elif any(palabra in direccion_upper for palabra in ['CENTRO', 'PLAZA', 'AYUNTAMIENTO']):
@@ -715,24 +806,16 @@ class GeoportalScraper:
     def _analizar_impacto_territorial(self, soup, estacion_id: str) -> Dict:
         municipio = ""
         try:
-            h2_localizacion = soup.find('h2', string='LOCALIZACIÓN')
-            if h2_localizacion:
-                tabla = h2_localizacion.find_next('table')
-                if tabla:
-                    celdas = tabla.find_all('td')
-                    if len(celdas) >= 2:
-                        direccion = celdas[1].get_text(strip=True)
-                        if '. ' in direccion:
-                            partes = direccion.split('. ')
-                            if len(partes) >= 2:
-                                municipio = partes[1].split(',')[0].strip() if ',' in partes[1] else partes[1].strip()
+            # Usar la misma lógica de extracción que en _extraer_informacion_geografica
+            resultado_direccion = self._buscar_direccion_por_tabla_localizacion(soup)
+            if resultado_direccion:
+                municipio = resultado_direccion.get('municipio', '')
         except:
             pass
 
         if not municipio:
             municipio = f"MUNICIPIO_{estacion_id}"
 
-        # ✅ CORREGIDO: Línea dividida para mejor legibilidad
         return {
             "poblacion_servida_estimada": random.randint(500, 5000),
             "area_cobertura_km2": round(random.uniform(10.0, 100.0), 1),
@@ -764,7 +847,7 @@ class GeoportalScraper:
         return {"url_scraped": url, "status_code": 200, "response_time_ms": response_time, "campos_extraidos": 45, "campos_calculados": 22, "timestamp_fin": datetime.now().isoformat() + "Z"}
 
     def es_pagina_valida(self, soup):
-        titulo = soup.find('h1', string='ESTACIONES DE TELEFONÍA MÓVIL')
+        titulo = soup.find('h1', string=re.compile('ESTACIONES DE TELEFONÍA MÓVIL', re.IGNORECASE))
         return titulo is not None
 
     def extraer_estacion_id(self, url):
