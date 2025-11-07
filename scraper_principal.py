@@ -311,7 +311,7 @@ class GeoportalScraper:
     def _determinar_tipo_zona(self, direccion: str) -> str:
         if not direccion:
             return "DESCONOCIDO"
-        direccion_upper = direccion.Upper()
+        direccion_upper = direccion.upper()  # ✅ CORREGIDO: upper() en minúscula
         if any(palabra in direccion_upper for palabra in ['POLÍGONO', 'POLIGONO', 'INDUSTRIAL']):
             return "INDUSTRIAL"
         elif any(palabra in direccion_upper for palabra in ['CENTRO', 'PLAZA', 'AYUNTAMIENTO']):
@@ -732,7 +732,30 @@ class GeoportalScraper:
         if not municipio:
             municipio = f"MUNICIPIO_{estacion_id}"
 
-        return {"poblacion_servida_estimada": random.randint(500, 5000), "area_cobertura_km2": round(random.uniform(10.0, 100.0), 1), "tipo_servicio": "RURAL_FIJO_MOVIL", "infraestructuras_criticas_cubiertas": [{"tipo": "CENTRO_SALUD", "distancia_metros": random.randint(800, 2000), "cobertura_estimada": "EXCELENTE"}, {"tipo": "AYUNTAMIENTO", "distancia_metros": random.randint(500, 1500), "cobertura_estimada": "EXCELENTE"}, {"tipo": "ZONA_RESIDENCIAL", "distancia_metros": random.randint(200, 1000), "cobertura_estimada": "EXCELENTE"}], "municipios_servidos": [municipio]}
+        # ✅ CORREGIDO: Línea dividida para mejor legibilidad
+        return {
+            "poblacion_servida_estimada": random.randint(500, 5000),
+            "area_cobertura_km2": round(random.uniform(10.0, 100.0), 1),
+            "tipo_servicio": "RURAL_FIJO_MOVIL",
+            "infraestructuras_criticas_cubiertas": [
+                {
+                    "tipo": "CENTRO_SALUD",
+                    "distancia_metros": random.randint(800, 2000),
+                    "cobertura_estimada": "EXCELENTE"
+                },
+                {
+                    "tipo": "AYUNTAMIENTO",
+                    "distancia_metros": random.randint(500, 1500),
+                    "cobertura_estimada": "EXCELENTE"
+                },
+                {
+                    "tipo": "ZONA_RESIDENCIAL",
+                    "distancia_metros": random.randint(200, 1000),
+                    "cobertura_estimada": "EXCELENTE"
+                }
+            ],
+            "municipios_servidos": [municipio]
+        }
 
     def _obtener_estado_actualizacion(self) -> Dict:
         return {"ultima_actualizacion": "2024-01-15", "proxima_revision": "2024-07-15", "estado_operativo": "ACTIVA", "confiabilidad_datos": "ALTA", "frecuencia_actualizacion": "SEMESTRAL"}
